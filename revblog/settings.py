@@ -30,7 +30,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-alexdralur-revblog-2bjum997qa.us2.codeanyapp.com', 'revforum.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['8000-alexdralur-revblog-2bjum997qa.us2.codeanyapp.com',
+                 'revforum.herokuapp.com', 'localhost', 'revforum-e95bec8bde7d.herokuapp.com']
 
 
 # Application definition
