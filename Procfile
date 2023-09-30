@@ -1,1 +1,1 @@
-web: gunicorn revforum.wsgi
+web: gunicorn revblog.wsgi
