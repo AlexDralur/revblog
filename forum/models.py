@@ -33,6 +33,8 @@ class Post(models.Model):
     excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, related_name='category')
 
     class Meta:
         ordering = ['created_on']
