@@ -10,5 +10,12 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('title',)
 
 
-admin.site.register(Post)
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+    list_filter = ('created_on', 'category')
+    list_display = ('title', 'slug', 'created_on', 'category')
+    search_fields = ('title', 'category')
+
+
 admin.site.register(Comment)
