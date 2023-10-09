@@ -3,24 +3,40 @@
 {% block content %}
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <div class="author-title">
-                <p class="author"> | </p>
-                <h1 class="post-title"></h1>
-            </div>
-            <div class="post-content">
-                {% if "placeholder" in post.featured_image.url %}
-                <img src="https://previews.123rf.com/images/captainvector/captainvector1509/captainvector150901737/45372855-caution-road-sign.jpg" alt="" srcset="">
-                {% else %}
-                <img src="" alt="">
-                {% endif %}
-            </div>
+  <div class="row">
+    <div class="col">
+      <div class="author-title">
+        <p class="author">|</p>
+        <h1 class="post-title"></h1>
+      </div>
+      <div class="post-image">
+        {% if "placeholder" in post.featured_image.url %}
+        <img
+          src="https://previews.123rf.com/images/captainvector/captainvector1509/captainvector150901737/45372855-caution-road-sign.jpg"
+          alt=""
+          srcset=""
+        />
+        {% else %}
+        <img src="" alt="" />
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="post-text"></div>
+      <div class="row">
+        <div class="col-1">
+          <i class="fa-regular fa-heart"></i>
         </div>
+        <div class="col-1">
+          {% with comments.count as total_comments %}
+          <i class="fa-regular fa-comment"></i>
+          {% endwith %}
+        </div>
+      </div>
     </div>
-    <div class="row">
-        
-    </div>
+  </div>
 </div>
 
 {% endblock %}
