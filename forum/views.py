@@ -22,7 +22,7 @@ class CategoryDetail(View):
 
         return render(
             request,
-            'post_list.html',
+            'posts_list.html',
             {
                 'category': category,
                 'posts': posts,
