@@ -3,11 +3,11 @@
 {% block content %}
 
 <div class="container-fluid">
-    {% for post in posts %}
+    {% for post in post_list %}
     <div class="row">
         <div class="col-lg-6">
-            <h2>{% category.name %}</h2>
-            <p>{% category.content %}</p>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
 
             {% if "placeholder" in post.featured_image.url %}
             <img src="https://previews.123rf.com/images/captainvector/captainvector1509/captainvector150901737/45372855-caution-road-sign.jpg"
