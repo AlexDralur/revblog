@@ -3,23 +3,23 @@
 {% block content %}
 
 <div class="container-fluid">
-    {% for category in category_list %}
     <div class="row">
-        <div class="col-lg-6">
+        {% for category in category_list %}
+        <div class="col-md-6">
             <a href="{% url 'posts_list' category.slug %}">
                 <h2>{{ category.title }}</h2>
                 <p>{{ category.content }}</p>
             
                 {% if "placeholder" in category.featured_image.url %}
-                <img src="https://previews.123rf.com/images/captainvector/captainvector1509/captainvector150901737/45372855-caution-road-sign.jpg"
+                <img src="https://th.bing.com/th/id/OIP.xe3rSWbIX9wO9lcLgtygawAAAA?w=249&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7"
                     alt="" srcset="" id='placeholder-image' />
                 {% else %}
                 <img src="" alt="" />
                 {% endif %}
             </a>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 
 {% endblock %}
