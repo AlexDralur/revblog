@@ -28,3 +28,11 @@ img {
     height: auto;
     object-fit: contain;
 }
+
+.text-end {
+    text-align: center;
+}
+
+.number-posts{
+    font-size: 0.7rem;
+}
