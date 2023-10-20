@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Category, Post, UserLike
 from .forms import PostForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import CreateView
+from django.utils.text import slugify
 
 
 class CategoryList(generic.ListView):

@@ -2,6 +2,11 @@
 
 {% block content %}
 
+<div class="post-add">
+    <h3>Start a conversation:</h3>
+    <a class="nav-link" href="{% url 'post_new' %}">New Post</a>
+</div>
+
 <div class="container-fluid">
     <div class="row">
         {% for post in posts %}
@@ -17,12 +22,7 @@
             {% endif %}
         </div>
         {% endfor %}
-    </div>
-    <div class="post-add card mb-4 mt-3">
-        {% if user.is_authenticated %}
-        <h3>Start a conversation:</h3>
-    </div>
-    
+    </div>    
 </div>
 
 {% endblock %}
