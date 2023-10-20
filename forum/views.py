@@ -28,6 +28,5 @@ class CategoryDetail(View):
                 'category': category,
                 'posts': posts,
                 'liked_posts': liked_posts,
-                'post_form': PostForm,
             },
         )
