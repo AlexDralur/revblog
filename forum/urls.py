@@ -1,5 +1,6 @@
 from . import views
 from django.urls import path, include
+from .views import PostCreateView
 
 urlpatterns = [
     path('', views.CategoryList.as_view(), name='home'),
