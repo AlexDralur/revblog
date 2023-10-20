@@ -30,3 +30,15 @@ class CategoryDetail(View):
                 'liked_posts': liked_posts,
             },
         )
+
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'post_new.html'
+
+    def form_valid(self, form):
+
+        form.instance.author = self.request.user
+        form.instance.slug = slugify(form.instance.title)
+        return super().form_valid(form)
