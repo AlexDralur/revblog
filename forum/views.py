@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Category, Post, UserLike
+from .forms import PostForm
 
 
 class CategoryList(generic.ListView):
@@ -27,5 +28,6 @@ class CategoryDetail(View):
                 'category': category,
                 'posts': posts,
                 'liked_posts': liked_posts,
+                'post_form': PostForm,
             },
         )
