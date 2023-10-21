@@ -39,6 +39,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
     template_name = 'post_new.html'
+    success_url = '/'
 
     def get_initial(self):
         category_slug = self.kwargs.get('category_slug')
