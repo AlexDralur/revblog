@@ -40,8 +40,13 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     form_class = PostForm
     template_name = 'post_new.html'
 
-    def form_valid(self, form):
+    def get_initial(self):
+        category_slug = self.kwargs.get('category_slug')
+        category = get_object_or_404(Category, slug=category_slug)
+        return {'category': category}
 
+    def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title)
+        form.instance.category = form.cleaned_data['category']
         return super().form_valid(form)
