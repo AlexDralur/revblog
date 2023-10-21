@@ -50,4 +50,12 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title)
         form.instance.category = form.cleaned_data['category']
-        return super().form_valid(form)
+        
+        try:
+            result = super().form_valid(form)
+        except IntegrityError:
+            messages.error(
+                self.request, "A post with the same title already exists.")
+            return self.form_invalid(form)
+
+        return result
