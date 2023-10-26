@@ -3,7 +3,7 @@ from django.views import generic, View
 from .models import Category, Post, UserLike
 from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.utils.text import slugify
 
 
@@ -59,3 +59,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
             return self.form_invalid(form)
 
         return result
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'post_edit.html'
