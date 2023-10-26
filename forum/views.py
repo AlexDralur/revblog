@@ -34,6 +34,8 @@ class CategoryDetail(View):
             },
         )
 
+class PostDetail(View):
+    model = Post
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
