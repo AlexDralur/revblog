@@ -8,4 +8,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('<slug:category_slug>/create/',
          PostCreateView.as_view(), name='create_post'),
+    path('<slug:category_slug/post_slug/edit', PostUpdateView.as_view(), name='update_post'),
 ]
