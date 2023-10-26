@@ -1,6 +1,6 @@
 from . import views
 from django.urls import path, include
-from .views import PostCreateView
+from .views import PostCreateView, PostUpdateView
 
 urlpatterns = [
     path('', views.CategoryList.as_view(), name='home'),
@@ -8,5 +8,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('<slug:category_slug>/create/',
          PostCreateView.as_view(), name='create_post'),
-    path('<slug:category_slug/post_slug/edit', PostUpdateView.as_view(), name='update_post'),
+    path('<slug:category_slug>/<slug:post_slug>/edit/', PostUpdateView.as_view(), name='update_post'),
 ]
