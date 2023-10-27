@@ -8,7 +8,7 @@
 </div>
 
 <div class="container-fluid">
-    <a class="nav-link" href="{% url 'post' post_slug=post.slug %}">
+    <a class="nav-link" href="{% url 'post_detail' category_slug=post.category.slug post_slug=post.slug %}">
         <div class="row">
             {% for post in posts %}
             <div class="col-md-6 col-sm-12">
@@ -24,7 +24,7 @@
             </div>
             {% endfor %}
         </div>
-    </a>
+    <!-- </a> -->
 </div>
 
 {% endblock %}

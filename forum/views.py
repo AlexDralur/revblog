@@ -4,6 +4,7 @@ from .models import Category, Post, UserLike
 from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.detail import DetailView
 from django.utils.text import slugify
 
 
@@ -34,8 +35,16 @@ class CategoryDetail(View):
             },
         )
 
-class PostDetail(View):
+
+class PostDetail(DetailView):
     model = Post
+    template_name = 'post.html'
+    context_object_name = 'post'
+
+    def get_object(self, queryset=None):
+        category_slug = self.kwargs.get('category_slug')
+        post_slug = self.kwargs.get('post_slug')
+        return get_object_or_404(Post, category_slug=category_slug, slug=post_slug)
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -52,7 +61,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title)
         form.instance.category = form.cleaned_data['category']
-        
+       
         try:
             result = super().form_valid(form)
         except IntegrityError:
