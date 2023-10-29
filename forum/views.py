@@ -46,6 +46,7 @@ class PostDetail(DetailView):
         post_slug = self.kwargs.get('post_slug')
         return get_object_or_404(Post, category_slug=category_slug, slug=post_slug)
 
+
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
@@ -61,7 +62,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title)
         form.instance.category = form.cleaned_data['category']
-       
+
         try:
             result = super().form_valid(form)
         except IntegrityError:
@@ -70,6 +71,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
             return self.form_invalid(form)
 
         return result
+
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
