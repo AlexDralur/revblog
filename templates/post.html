@@ -29,6 +29,14 @@
       </div>
     </div>
   </div>
+  <div class="post-add">
+    <h3>Update:</h3>
+    <a
+      class="nav-link"
+      href="{% url 'update_post' category_slug=post.category.slug post_slug=post.slug %}"
+      >Update</a
+    >
+  </div>
 </div>
 
 {% endblock %}
