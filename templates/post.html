@@ -1,38 +1,30 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 <div class="container-fluid">
   <div class="row">
     <div class="col">
       <div class="author-title">
-        <p class="author">|</p>
-        <h1 class="post-title"></h1>
+        <p class="author">| {{ post.author.username }}</p>
+        <h1 class="post-title">{{ post.title }}</h1>
       </div>
       <div class="post-image">
         {% if "placeholder" in post.featured_image.url %}
-        <img
-          src="https://previews.123rf.com/images/captainvector/captainvector1509/captainvector150901737/45372855-caution-road-sign.jpg"
-          alt=""
-          srcset=""
-        />
+        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" />
         {% else %}
-        <img src="" alt="" />
+        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" />
         {% endif %}
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <div class="post-text"></div>
+      <div class="post-text">{{ post.content }}</div>
       <div class="row">
         <div class="col-1">
           <i class="fa-regular fa-heart"></i>
         </div>
         <div class="col-1">
-          {% with comments.count as total_comments %}
-          <i class="fa-regular fa-comment"></i>
-          {% endwith %}
+          <i class="fa-regular fa-comment"></i> {{ total_comments }}
         </div>
       </div>
     </div>

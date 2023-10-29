@@ -44,7 +44,7 @@ class PostDetail(DetailView):
     def get_object(self, queryset=None):
         category_slug = self.kwargs.get('category_slug')
         post_slug = self.kwargs.get('post_slug')
-        return get_object_or_404(Post, category_slug=category_slug, slug=post_slug)
+        return get_object_or_404(Post, category__slug=category_slug, slug=post_slug)
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
