@@ -77,6 +77,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'post_edit.html'
+    slug_url_kwarg = 'post_slug'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
