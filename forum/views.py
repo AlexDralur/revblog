@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Category, Post, UserLike
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -46,6 +46,24 @@ class PostDetail(DetailView):
         category_slug = self.kwargs.get('category_slug')
         post_slug = self.kwargs.get('post_slug')
         return get_object_or_404(Post, category__slug=category_slug, slug=post_slug)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        post = self.get_object()
+        comment_form = CommentForm(request.POST)
+
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.post = post
+            new_comment.save()
+            return redirect('post_detail', category_slug=post.category.slug, post_slug=post.slug)
+
+        context = self.get_context_data(object=post, comment_form=comment_form)
+        return self.render_to_response(context)
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -93,7 +111,6 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     success_url = '/'
 
     def get_object(self, queryset=None):
-        # Customize how the object is retrieved (if needed)
         category_slug = self.kwargs.get('category_slug')
         post_slug = self.kwargs.get('post_slug')
         return Post.objects.get(category__slug=category_slug, slug=post_slug)
