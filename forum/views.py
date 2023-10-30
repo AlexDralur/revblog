@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic, View
 from .models import Category, Post, UserLike
 from .forms import PostForm, CommentForm
@@ -64,6 +64,12 @@ class PostDetail(DetailView):
 
         context = self.get_context_data(object=post, comment_form=comment_form)
         return self.render_to_response(context)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        context['comments'] = self.get_object().comments.all()
+        return context
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):

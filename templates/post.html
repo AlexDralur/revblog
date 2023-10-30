@@ -24,7 +24,7 @@
           <i class="fa-regular fa-heart"></i>
         </div>
         <div class="col-1">
-          <i class="fa-regular fa-comment"></i> {{ total_comments }}
+          <i class="fa-regular fa-comment"></i> {{ post.total_comments }}
         </div>
       </div>
     </div>
@@ -44,6 +44,15 @@
       Delete
     </a>
   </div>
+  <div class="comments-view">
+    {% for comment in comments %}
+    <p>Posted by: {{ user.username }}</p>
+    <p>{{ comment.body }}</p>
+    {% empty %}
+    <h3>No comments yet.</h3>
+    {% endfor %}
+  </div>
+
   <div class="cold-md-4 card mb-4 mt-3">
     <div class="card-body">
       {% if user.is_authenticated %}
