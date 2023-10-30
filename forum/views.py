@@ -2,8 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Category, Post, UserLike
 from .forms import PostForm
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.utils.text import slugify
 
@@ -83,3 +84,16 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title)
         return super().form_valid(form)
+
+
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    model = Post
+    template_name = 'post_delete.html'
+    slug_url_kwarg = 'post_slug'
+    success_url = '/'
+
+    def get_object(self, queryset=None):
+        # Customize how the object is retrieved (if needed)
+        category_slug = self.kwargs.get('category_slug')
+        post_slug = self.kwargs.get('post_slug')
+        return Post.objects.get(category__slug=category_slug, slug=post_slug)

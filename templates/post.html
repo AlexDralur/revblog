@@ -36,6 +36,13 @@
       href="{% url 'update_post' category_slug=post.category.slug post_slug=post.slug %}"
       >Update</a
     >
+    <h3>Delete Post</h3>
+    <a
+      class="nav-link"
+      href="{% url 'delete_post' category_slug=post.category.slug post_slug=post.slug %}"
+    >
+      Delete
+    </a>
   </div>
 </div>
 
