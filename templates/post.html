@@ -18,32 +18,39 @@
   </div>
   <div id="favourite-section">
     <p>Favourite post</p>
-    {% if is_favourite %}
     <a
       href="{% url 'favourite' category_slug=post.category.slug post_slug=post.slug %}"
+      class="favorite-link"
     >
+      {% if favourite %}
       <i class="fa-sharp fa-solid fa-star"></i>
-    </a>
-    {% else %}
-    <a
-      href="{% url 'favourite' category_slug=post.category.slug post_slug=post.slug %}"
-    >
+      {% else %}
       <i class="fa-sharp fa-regular fa-star"></i>
+      {% endif %}
     </a>
-    {% endif %}
   </div>
   <div class="row">
     <div class="col">
       <div class="post-text">{{ post.content }}</div>
       <div class="row">
         <div class="col-1">
-          <i class="fa-regular fa-heart"></i>
-        </div>
-        <div class="col-1">
           <i class="fa-regular fa-comment"></i> {{ post.total_comments }}
         </div>
       </div>
     </div>
+  </div>
+  <div id="favourite-section">
+    <p>Like</p>
+    <a
+      href="{% url 'like' category_slug=post.category.slug post_slug=post.slug %}"
+      class="favorite-link"
+    >
+      {% if favourite %}
+      <i class="fa-sharp fa-solid fa-star"></i>
+      {% else %}
+      <i class="fa-sharp fa-regular fa-star"></i>
+      {% endif %}
+    </a>
   </div>
   <div class="post-add">
     <h3>Update:</h3>

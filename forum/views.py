@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.utils.text import slugify
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 
 
 class CategoryList(generic.ListView):
@@ -71,14 +71,6 @@ class PostDetail(DetailView):
         context['comments'] = self.get_object().comments.all()
         return context
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['comment_form'] = CommentForm()
-    #     context['favourite'] = post.favourite.filter(id=user.id).exists()
-    #     context['liked'] = post.likes.filter(id=user.id).exists()
-    #     context['comments'] = self.get_object().comments.all()
-    #     return context
-
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -131,36 +123,28 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class FavouritePost(LoginRequiredMixin, View):
-    context_object_name = 'post'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        category_slug = self.kwargs.get('category_slug')
-        post_slug = self.kwargs.get('post_slug')
+    def post(self, request, category_slug, post_slug):
         post = get_object_or_404(
             Post, category__slug=category_slug, slug=post_slug)
-        context['post'] = post
-        return context
+        favorited = post.favourite.filter(id=request.user.id).exists()
 
-    def get(self, request, *args, **kwargs):
-        category_slug = self.kwargs.get('category_slug')
-        post_slug = self.kwargs.get('post_slug')
-
-        if self.favourite.filter(id=request.user.id).exists():
-            self.favourite.remove(request.user)
+        if favorited:
+            post.favourite.remove(request.user)
         else:
-            self.favourite.add(request.user)
-        return get_object_or_404(self, category__slug=category_slug, slug=post_slug)
+            post.favourite.add(request.user)
+        return JsonResponse({'favorited': not favorited})
 
 
 class LikedPost(View):
-    post = None
 
-    def dispatch(self, request, category_slug, post_slug):
+    def post(self, request, category_slug, post_slug):
         post = get_object_or_404(
             Post, category__slug=category_slug, slug=post_slug)
-        if post.likes.filter(id=request.user.id).exists():
-            post.likes.remove(request.user)
+        liked = post.like.filter(id=request.user.id).exists()
+
+        if liked:
+            post.like.remove(request.user)
         else:
-            post.likes.add(request.user)
-        return HttpResponseRedirect(post.get_absolute_url())
+            post.like.add(request.user)
+        return JsonResponse({'liked': not liked})
