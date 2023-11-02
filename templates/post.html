@@ -16,6 +16,22 @@
       </div>
     </div>
   </div>
+  <div id="favourite-section">
+    <p>Favourite post</p>
+    {% if is_favourite %}
+    <a
+      href="{% url 'favourite' category_slug=post.category.slug post_slug=post.slug %}"
+    >
+      <i class="fa-sharp fa-solid fa-star"></i>
+    </a>
+    {% else %}
+    <a
+      href="{% url 'favourite' category_slug=post.category.slug post_slug=post.slug %}"
+    >
+      <i class="fa-sharp fa-regular fa-star"></i>
+    </a>
+    {% endif %}
+  </div>
   <div class="row">
     <div class="col">
       <div class="post-text">{{ post.content }}</div>

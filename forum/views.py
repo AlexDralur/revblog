@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.utils.text import slugify
+from django.http import HttpResponseRedirect
 
 
 class CategoryList(generic.ListView):
@@ -47,11 +48,6 @@ class PostDetail(DetailView):
         post_slug = self.kwargs.get('post_slug')
         return get_object_or_404(Post, category__slug=category_slug, slug=post_slug)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['comment_form'] = CommentForm()
-        return context
-
     def post(self, request, *args, **kwargs):
         post = self.get_object()
         comment_form = CommentForm(request.POST)
@@ -68,8 +64,20 @@ class PostDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['comment_form'] = CommentForm()
+        post = self.get_object()
+        user = self.request.user
+        context['favourite'] = post.favourite.filter(id=user.id).exists()
+        context['liked'] = post.likes.filter(id=user.id).exists()
         context['comments'] = self.get_object().comments.all()
         return context
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['comment_form'] = CommentForm()
+    #     context['favourite'] = post.favourite.filter(id=user.id).exists()
+    #     context['liked'] = post.likes.filter(id=user.id).exists()
+    #     context['comments'] = self.get_object().comments.all()
+    #     return context
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -120,3 +128,39 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
         category_slug = self.kwargs.get('category_slug')
         post_slug = self.kwargs.get('post_slug')
         return Post.objects.get(category__slug=category_slug, slug=post_slug)
+
+
+class FavouritePost(LoginRequiredMixin, View):
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        category_slug = self.kwargs.get('category_slug')
+        post_slug = self.kwargs.get('post_slug')
+        post = get_object_or_404(
+            Post, category__slug=category_slug, slug=post_slug)
+        context['post'] = post
+        return context
+
+    def get(self, request, *args, **kwargs):
+        category_slug = self.kwargs.get('category_slug')
+        post_slug = self.kwargs.get('post_slug')
+
+        if self.favourite.filter(id=request.user.id).exists():
+            self.favourite.remove(request.user)
+        else:
+            self.favourite.add(request.user)
+        return get_object_or_404(self, category__slug=category_slug, slug=post_slug)
+
+
+class LikedPost(View):
+    post = None
+
+    def dispatch(self, request, category_slug, post_slug):
+        post = get_object_or_404(
+            Post, category__slug=category_slug, slug=post_slug)
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+        return HttpResponseRedirect(post.get_absolute_url())
