@@ -1,9 +1,11 @@
 {% extends "base.html" %} {% block content %}
 
 <div class="post-add">
-  <h3>Start a conversation:</h3>
-  <a class="nav-link" href="{% url 'create_post' category_slug=category.slug %}"
-    >New Post</a
+  <a
+    class="nav-link btn btn-outline"
+    id="new-post-button"
+    href="{% url 'create_post' category_slug=category.slug %}"
+    >NEW POST</a
   >
 </div>
 
