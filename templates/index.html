@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         {% for category in category_list %}
-        <div class="col-12 category-column">
+        <div class="col-12 category-column" id="category">
             <a href="{% url 'posts_list' category.slug %}">
                 <div class="d-flex align-items-start flex-column justify-content-between">
                     <h2>{{ category.title }}</h2>
