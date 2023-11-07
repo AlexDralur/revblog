@@ -1,23 +1,23 @@
 {% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
 
-<div class="container-fluid">
+<div class="container-fluid post">
   <div class="row">
     <div class="col">
       <div class="author-title">
-        <p class="author">| {{ post.author.username }}</p>
+        <p class="author">{{ post.author.username }} | {{ post.created_on }}</p>
         <h1 class="post-title">{{ post.title }}</h1>
       </div>
       <div class="post-image">
         {% if "placeholder" in post.featured_image.url %}
         <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" />
         {% else %}
-        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" />
+        <p>No image.</p>
         {% endif %}
       </div>
     </div>
   </div>
   <div id="favourite-section">
-    <p>Favourite post</p>
+    <p>Favourite</p>
     <a
       href="{% url 'favourite' category_slug=post.category.slug post_slug=post.slug %}"
       class="favorite-link"
@@ -52,21 +52,21 @@
       {% endif %}
     </a>
   </div>
+  {% if user.is_authenticated and user == post.author %}
   <div class="post-add">
-    <h3>Update:</h3>
     <a
       class="nav-link"
       href="{% url 'update_post' category_slug=post.category.slug post_slug=post.slug %}"
-      >Update</a
+      >Update Post</a
     >
-    <h3>Delete Post</h3>
     <a
       class="nav-link"
       href="{% url 'delete_post' category_slug=post.category.slug post_slug=post.slug %}"
     >
-      Delete
+      Delete Post
     </a>
   </div>
+  {% endif %}
   <div class="comments-view">
     {% for comment in comments %}
     <p>Posted by: {{ user.username }}</p>
@@ -76,18 +76,25 @@
     {% endfor %}
   </div>
 
+  {% if user.is_authenticated %}
   <div class="cold-md-4 card mb-4 mt-3">
     <div class="card-body">
-      {% if user.is_authenticated %}
       <h3>Leave a comment:</h3>
       <p>Posting as: {{ user.username }}</p>
       <form style="margin-top: 1.3em" method="post">
         {{ comment_form | crispy }} {% csrf_token %}
         <button type="submit" class="btn btn-signup btn-lg">Submit</button>
       </form>
-      {% endif %}
     </div>
   </div>
+  {% else %}
+  <a
+    class="nav-link btn btn-outline justify-content-center"
+    id="login-comment"
+    href="{% url 'account_login' %}"
+    >Login to leave a comment</a
+  >
+  {% endif %}
 </div>
 
 {% endblock %}
