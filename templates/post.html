@@ -2,32 +2,32 @@
 
 <div class="container-fluid post">
   <div class="row">
-    <div class="col">
-      <div class="author-title">
-        <p class="author">{{ post.author.username }} | {{ post.created_on }}</p>
+    <div class="col d-flex justify-content-between post-info">
+      <div class="author-title d-inline">
         <h1 class="post-title">{{ post.title }}</h1>
+        <p class="author d-inline">{{ post.author.username }} | {{ post.created_on }}</p>
       </div>
-      <div class="post-image">
+      <div id="favourite-section">
+        <p class="d-inline">Favourite</p>
+        <a
+          href="{% url 'favourite' category_slug=post.category.slug post_slug=post.slug %}"
+          class="favorite-link"
+        >
+          {% if favourite %}
+          <i class="fa-sharp fa-solid fa-star"></i>
+          {% else %}
+          <i class="fa-sharp fa-regular fa-star"></i>
+          {% endif %}
+        </a>
+      </div>
+      <!-- <div class="post-image">
         {% if "placeholder" in post.featured_image.url %}
         <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" />
         {% else %}
         <p>No image.</p>
         {% endif %}
-      </div>
+      </div> -->
     </div>
-  </div>
-  <div id="favourite-section">
-    <p>Favourite</p>
-    <a
-      href="{% url 'favourite' category_slug=post.category.slug post_slug=post.slug %}"
-      class="favorite-link"
-    >
-      {% if favourite %}
-      <i class="fa-sharp fa-solid fa-star"></i>
-      {% else %}
-      <i class="fa-sharp fa-regular fa-star"></i>
-      {% endif %}
-    </a>
   </div>
   <div class="row">
     <div class="col">
