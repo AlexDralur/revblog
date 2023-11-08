@@ -101,8 +101,9 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = PostForm
-    template_name = 'post_edit.html'
+    template_name = 'post_update.html'
     slug_url_kwarg = 'post_slug'
+    success_url = '/'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -124,7 +125,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 
 class FavouritePost(LoginRequiredMixin, View):
 
-    def post(self, request, category_slug, post_slug):
+    def get(self, request, category_slug, post_slug):
         post = get_object_or_404(
             Post, category__slug=category_slug, slug=post_slug)
         favorited = post.favourite.filter(id=request.user.id).exists()
@@ -133,18 +134,18 @@ class FavouritePost(LoginRequiredMixin, View):
             post.favourite.remove(request.user)
         else:
             post.favourite.add(request.user)
-        return JsonResponse({'favorited': not favorited})
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse_lazy('post')))
 
 
-class LikedPost(View):
+class LikedPost(LoginRequiredMixin, View):
 
-    def post(self, request, category_slug, post_slug):
+    def get(self, request, category_slug, post_slug):
         post = get_object_or_404(
             Post, category__slug=category_slug, slug=post_slug)
-        liked = post.like.filter(id=request.user.id).exists()
+        liked = post.likes.filter(id=request.user.id).exists()
 
         if liked:
-            post.like.remove(request.user)
+            post.likes.remove(request.user)
         else:
-            post.like.add(request.user)
-        return JsonResponse({'liked': not liked})
+            post.likes.add(request.user)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse_lazy('post')))

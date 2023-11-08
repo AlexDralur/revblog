@@ -41,7 +41,7 @@
           href="{% url 'like' category_slug=post.category.slug post_slug=post.slug %}"
           class="like-link d-inline"
         >
-          {% if likes %}
+          {% if liked %}
           <i class="fa-sharp fa-solid fa-heart"></i>
           {% else %}
           <i class="fa-sharp fa-regular fa-heart"></i>
