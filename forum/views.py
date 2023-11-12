@@ -25,7 +25,8 @@ class CategoryDetail(View):
         liked_posts = []
         if request.user.is_authenticated:
             liked_posts = UserLike.objects.filter(
-                user=request.user, post__in=posts).values_list('post_id', flat=True)
+                user=request.user, post__in=posts).values_list(
+                    'post_id', flat=True)
 
         return render(
             request,
