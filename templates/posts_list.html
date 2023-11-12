@@ -12,24 +12,19 @@
 <div class="container-fluid">
   <div class="row">
     {% for post in posts %}
-    <div class="col-12 post-info">
+    <div class="col-12 post-info d-flex">
       <a
         class="nav-link"
         href="{% url 'post_detail' category_slug=post.category.slug post_slug=post.slug %}"
       >
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.content }}</p>
-
-        {% if "placeholder" in post.featured_image.url %}
-        <img
-          src="https://th.bing.com/th/id/OIP.xe3rSWbIX9wO9lcLgtygawAAAA?w=249&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7"
-          alt=""
-          srcset=""
-          id="post-image"
-        />
-        {% else %}
-        <img src="" alt="" />
-        {% endif %}
+        <div class="title-content-link">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.content }}</p>
+        </div>
+        <div class="ml-auto comment-numbers">
+          <p>Comments:</p>
+          {{ post.number_of_comments }}
+        </div>
       </a>
     </div>
     {% endfor %}
