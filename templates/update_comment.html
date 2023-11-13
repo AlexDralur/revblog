@@ -1,0 +1,9 @@
+{% extends "base.html" %} {% block content %}
+<h2>Update your comment</h2>
+<form method="post">
+  {% csrf_token %} {{ form.as_p }} {% for field in form %}
+  <p>Field: {{ field.name }}, Data: {{ field.value }}</p>
+  {% endfor %}
+  <button type="submit">Update Comment</button>
+</form>
+{% endblock %}

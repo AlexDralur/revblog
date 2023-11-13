@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic, View
 from .models import Category, Post, UserLike, Comment
 from .forms import PostForm, CommentForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
@@ -153,7 +153,26 @@ class LikedPost(LoginRequiredMixin, View):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse_lazy('post')))
 
 
-class CommentUpdateView(LoginRequiredMixin, UpdateView):
-    model = Comment
-    template_name = 'comment_update.html'
-    fields = ['body']
+class CommentUpdateView(LoginRequiredMixin, View):
+    template_name = 'update_comment.html'
+
+    def get(self, request, category_slug, post_slug, pk):
+        comment_update = get_object_or_404(
+            Comment, pk=pk, name=request.user.username)
+        form = CommentForm(instance=comment_update)
+        context = {'form': form, 'comment': comment_update}
+        return render(request, self.template_name, context)
+
+    def post(self, request, category_slug, post_slug, pk):
+        comment_update = get_object_or_404(
+            Comment, pk=pk, name=request.user.username)
+        form = CommentForm(request.POST, instance=comment_update)
+
+        if form.is_valid():
+            form.save()
+            post_url = reverse_lazy('post_detail', kwargs={
+                                    'category_slug': category_slug, 'post_slug': post_slug})
+            return redirect(post_url)
+
+        context = {'form': form, 'comment': comment_update}
+        return render(request, self.template_name, context)

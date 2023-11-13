@@ -80,13 +80,12 @@
     <p>{{ comment.body }}</p>
     {% if user.is_authenticated and user.username == comment.name %}
     <a
-
-     
-
-COmmento     
-                class="na   href="{% url 'update_comment' category_slug=post.category.slug post_slug=post.slug %}"
-      >Update Post</a
+      class="nav-link"
+      href="{% url 'update_comment' category_slug=post.category.slug post_slug=post.slug pk=comment.pk %}"
     >
+      Update Comment
+    </a>
+
     {% endif %} {% empty %}
     <h3>No comments yet.</h3>
     {% endfor %}
