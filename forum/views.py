@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic, View
-from .models import Category, Post, UserLike
+from .models import Category, Post, UserLike, Comment
 from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -56,6 +56,7 @@ class PostDetail(DetailView):
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
             new_comment.post = post
+            new_comment.name = request.user.username
             new_comment.save()
             return redirect('post_detail', category_slug=post.category.slug, post_slug=post.slug)
 
@@ -150,3 +151,9 @@ class LikedPost(LoginRequiredMixin, View):
         else:
             post.likes.add(request.user)
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse_lazy('post')))
+
+
+class CommentUpdateView(LoginRequiredMixin, UpdateView):
+    model = Comment
+    template_name = 'comment_update.html'
+    fields = ['body']
