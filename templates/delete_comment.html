@@ -1,7 +1,8 @@
 {% extends "base.html" %} {% block content %}
-<h2>Update your Post</h2>
+
+<h2>Are you sure you want do delete your comment?</h2>
 <form method="post">
   {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Update Post</button>
+  <button type="submit">Delete Comment</button>
 </form>
 {% endblock %}

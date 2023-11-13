@@ -176,3 +176,19 @@ class CommentUpdateView(LoginRequiredMixin, View):
 
         context = {'form': form, 'comment': comment_update}
         return render(request, self.template_name, context)
+
+
+class CommentDeleteView(LoginRequiredMixin, DeleteView):
+    model = Comment
+    template_name = 'delete_comment.html'
+
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(Comment, pk=pk, name=self.request.user.username)
+
+    def get_success_url(self):
+        category_slug = self.kwargs.get('category_slug')
+        post_slug = self.kwargs.get('post_slug')
+        success_url = reverse_lazy('post_detail', kwargs={
+                                   'category_slug': category_slug, 'post_slug': post_slug})
+        return success_url
