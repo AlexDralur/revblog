@@ -8,6 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.utils.text import slugify
 from django.http import HttpResponseRedirect, JsonResponse
+from django.utils import timezone
 
 
 class CategoryList(generic.ListView):
@@ -110,6 +111,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title)
+        form.instance.updated_at = timezone.now()
         return super().form_valid(form)
 
 
@@ -169,6 +171,7 @@ class CommentUpdateView(LoginRequiredMixin, View):
         form = CommentForm(request.POST, instance=comment_update)
 
         if form.is_valid():
+            form.instance.updated_at = timezone.now()
             form.save()
             post_url = reverse_lazy('post_detail', kwargs={
                                     'category_slug': category_slug, 'post_slug': post_slug})

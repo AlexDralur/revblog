@@ -57,6 +57,9 @@
       <div class="col-1 comment-numbers d-inline">
         <i class="fa-regular fa-comment"></i> {{ post.number_of_comments }}
       </div>
+      {% if post.updated_at == post.created_on %} {% else %}
+      <p>Last updated on: {{ post.updated_at }}</p>
+      {% endif %}
     </div>
   </div>
   {% if user.is_authenticated and user == post.author %}
@@ -76,9 +79,11 @@
   {% endif %}
   <div class="comments-view">
     {% for comment in comments %}
-    <p>Posted by: {{ comment.name }}</p>
+    <p>Posted by: {{ comment.name }} | {{ comment.created_on }}</p>
     <p>{{ comment.body }}</p>
-    {% if user.is_authenticated and user.username == comment.name %}
+    {% if comment.updated_at == comment.created_on %} {% else %}
+    <p>Last updated on: {{ comment.updated_at }}</p>
+    {% endif %} {% if user.is_authenticated and user.username == comment.name %}
     <a
       class="nav-link"
       href="{% url 'update_comment' category_slug=post.category.slug post_slug=post.slug pk=comment.pk %}"
