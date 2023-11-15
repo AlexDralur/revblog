@@ -9,6 +9,7 @@ from django.views.generic.detail import DetailView
 from django.utils.text import slugify
 from django.http import HttpResponseRedirect, JsonResponse
 from django.utils import timezone
+from django.db import IntegrityError
 
 
 class CategoryList(generic.ListView):
@@ -81,7 +82,6 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
     template_name = 'post_new.html'
-    success_url = '/'
 
     def get_initial(self):
         category_slug = self.kwargs.get('category_slug')
@@ -101,6 +101,12 @@ class PostCreateView(LoginRequiredMixin, CreateView):
             return self.form_invalid(form)
 
         return result
+
+    def get_success_url(self):
+        category_slug = self.kwargs.get('category_slug')
+        success_url = reverse_lazy('posts_list', kwargs={
+                                   'slug': category_slug})
+        return success_url
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
