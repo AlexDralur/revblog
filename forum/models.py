@@ -10,8 +10,6 @@ class Category(models.Model):
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
-    posts = models.ManyToManyField(
-        User, related_name='posts_category', blank=True)
 
     class Meta:
         ordering = ['created_on']
@@ -20,7 +18,7 @@ class Category(models.Model):
         return self.title
 
     def number_of_posts(self):
-        return self.posts.count()
+        return self.post_set.count()
 
 
 class Post(models.Model):
@@ -37,7 +35,7 @@ class Post(models.Model):
     favourite = models.ManyToManyField(
         User, related_name='favourite', blank=True)
     category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, related_name='category')
+        'Category', on_delete=models.CASCADE, related_name='post_set')
 
     class Meta:
         ordering = ['created_on']

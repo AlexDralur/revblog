@@ -23,6 +23,8 @@ class CategoryDetail(View):
         category = get_object_or_404(Category, slug=slug)
         posts = Post.objects.filter(category=category).order_by('-created_on')
 
+        print(f"Number of posts: {category.number_of_posts()}")
+
         liked_posts = []
         if request.user.is_authenticated:
             liked_posts = UserLike.objects.filter(
