@@ -21,7 +21,7 @@
           <h2>{{ post.title }}</h2>
           <p>{{ post.content }}</p>
         </div>
-        {% if favourite %}
+        {% if post.favourite %}
         <i class="fa-sharp fa-solid fa-star"></i>
         {% endif %}
         <div class="ml-auto comment-numbers">
