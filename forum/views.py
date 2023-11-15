@@ -108,13 +108,19 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     form_class = PostForm
     template_name = 'post_update.html'
     slug_url_kwarg = 'post_slug'
-    success_url = '/'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title)
         form.instance.updated_at = timezone.now()
         return super().form_valid(form)
+
+    def get_success_url(self):
+        category_slug = self.kwargs.get('category_slug')
+        post_slug = self.kwargs.get('post_slug')
+        success_url = reverse_lazy('post_detail', kwargs={
+                                   'category_slug': category_slug, 'post_slug': post_slug})
+        return success_url
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
