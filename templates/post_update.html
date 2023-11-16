@@ -1,10 +1,9 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
+<!-- Update Post Form -->
 <h2>Update your Post</h2>
 <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update Post</button>
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Update Post</button>
 </form>
 {% endblock %}
