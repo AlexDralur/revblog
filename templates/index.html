@@ -3,18 +3,17 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
     <!-- Category Selection -->
+    <h1 class="category-header">REVforum categories</h1>
     {% for category in category_list %}
-    <div class="col-12 category-column" id="category">
+    <div class="justify-content-between category-column" id="category">
       <a href="{% url 'posts_list' category.slug %}">
-        <div
-          class="d-flex align-items-start flex-column justify-content-between"
-        >
-          <h2>{{ category.title }}</h2>
-          <p>{{ category.content }}</p>
+        <div class="align-items-start category-title-content">
+          <h2 class="category-title">{{ category.title }}</h2>
+          <p class="category-content">{{ category.content }}</p>
         </div>
-        <div class="text-end">
+        <div class="category-posts ms-auto">
           <p class="number-posts">Number of posts</p>
-          {{ category.number_of_posts }}
+          <span class="number-posts">{{ category.number_of_posts }}</span>
         </div>
       </a>
     </div>
