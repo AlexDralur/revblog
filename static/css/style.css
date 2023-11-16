@@ -5,7 +5,8 @@ body {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 0 6.25rem;
+    padding: 0;
+    min-height: 100vh;
 }
 
 /* INDEX PAGE */
@@ -192,6 +193,7 @@ img {
     flex-direction: column;
     position: absolute;
     overflow: hidden;
+    bottom: 0;
 }
 
 .row-social {
