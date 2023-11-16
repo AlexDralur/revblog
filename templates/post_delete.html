@@ -1,5 +1,6 @@
 {% extends "base.html" %} {% block content %}
 
+<!-- Delete Post Form -->
 <h2>Are you sure you want do delete your post?</h2>
 <form method="post">
   {% csrf_token %} {{ form.as_p }}

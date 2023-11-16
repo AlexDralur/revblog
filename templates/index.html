@@ -1,23 +1,25 @@
 {% extends "base.html" %} {% block content %}
 
 <div class="container-fluid">
-    <div class="row justify-content-center">
-        <!-- Category Selection -->
-        {% for category in category_list %}
-        <div class="col-12 category-column" id="category">
-            <a href="{% url 'posts_list' category.slug %}">
-                <div class="d-flex align-items-start flex-column justify-content-between">
-                    <h2>{{ category.title }}</h2>
-                    <p>{{ category.content }}</p>
-                </div>
-                <div class="text-end">
-                    <p class="number-posts">Number of posts</p>
-                    {{ category.number_of_posts }}
-                </div>
-            </a>
+  <div class="row justify-content-center">
+    <!-- Category Selection -->
+    {% for category in category_list %}
+    <div class="col-12 category-column" id="category">
+      <a href="{% url 'posts_list' category.slug %}">
+        <div
+          class="d-flex align-items-start flex-column justify-content-between"
+        >
+          <h2>{{ category.title }}</h2>
+          <p>{{ category.content }}</p>
         </div>
-        {% endfor %}
+        <div class="text-end">
+          <p class="number-posts">Number of posts</p>
+          {{ category.number_of_posts }}
+        </div>
+      </a>
     </div>
+    {% endfor %}
+  </div>
 </div>
 
 {% endblock %}
