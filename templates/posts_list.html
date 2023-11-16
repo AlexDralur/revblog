@@ -1,5 +1,6 @@
 {% extends "base.html" %} {% block content %}
 
+<!-- New Post Button -->
 <div class="post-add">
   <a
     class="nav-link btn btn-outline"
@@ -9,6 +10,7 @@
   >
 </div>
 
+<!-- Posts Links -->
 <div class="container-fluid">
   <div class="row">
     {% for post in posts %}
@@ -21,6 +23,7 @@
           <h2>{{ post.title }}</h2>
           <p>{{ post.content }}</p>
         </div>
+        <!-- Favourite Icon -->
         {% if post.favourite %}
         <i class="fa-sharp fa-solid fa-star"></i>
         {% endif %}
