@@ -20,8 +20,7 @@ Revforum is an online forum made with Django framework. It allows people with th
       - [*Main Screen:*](#main-screen)
       - [*Post List screen:*](#post-list-screen)
       - [*Post screen:*](#post-screen)
-      - [*Game:*](#game)
-      - [*Congratulations and Game Over:*](#congratulations-and-game-over)
+      - [*Post screen:*](#post-screen-1)
   - [**Future-Enhancements**](#future-enhancements)
   - [**Testing Phase**](#testing-phase)
   - [**Validators**](#validators)
@@ -125,11 +124,39 @@ Only error related to the ASCII graphics (W605)
 
 ## **Bugs**
 
-Problem 🐞: 
+Problem 🐞: User was redirected to the main page after making a new post.
 
-Cause🛠: 
+Cause🛠: The redirect page was incorrect.
 
-Resolution✅: 
+Resolution✅: View code changed to redirect to the posts list page.
+***
+
+Problem 🐞: User was redirected to the main page after updating a post.
+
+Cause🛠: The redirect page was incorrect.
+
+Resolution✅: View code changed to redirect to the post page.
+***
+
+Problem 🐞: Username of the user who made the comment on a post was not being shown.
+
+Cause🛠: The code in the template was not correct.
+
+Resolution✅: Change the code to retrieve the username of the comment saved on the database.
+***
+
+Problem 🐞: User was not being redirected to the post page if lhey liked/favourite the post.
+
+Cause🛠: The redirect page was incorrect.
+
+Resolution✅: View code changed to redirect to the post page.
+***
+
+Problem 🐞: Post counter within a category not showing the amount.
+
+Cause🛠: Co-relation between models was incorrect.
+
+Resolution✅: Changed to a ForeignKey relation.
 ***
 
 ## **Deployment**
