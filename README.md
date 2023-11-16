@@ -106,11 +106,67 @@ Revforum is an online forum made with Django framework. It allows people with th
 
 ​
 
-Implementation: 
+Implementation: Create new category as admin.
 
-Test: 
+Test: Access admin area and created new category.
 
-Result: 
+Result: New category appeared on the website.
+***
+
+Implementation: Create button to allow user to crate new post.
+
+Test: Clicked on button.
+
+Result: New page with new post form created.
+***
+
+Implementation: Create new post inside a category.
+
+Test: Fill out the form to create new post.
+
+Result: New post added to the category.
+***
+
+Implementation: Button for the user to update post.
+
+Test: Clicked on button.
+
+Result: New page appeared with the update post form.
+***
+
+Implementation: Update post inside a category.
+
+Test: Fill out the form to update post.
+
+Result: Post page updated with the new information.
+***
+
+Implementation: Button for the user to delete post.
+
+Test: Clicked on button.
+
+Result: After confirmation, Posts list loaded without the deleted post.
+***
+
+Implementation: Create area to allow user to crate new comment.
+
+Test: Typed the comment and clicked to post comment.
+
+Result: Comment appeared on the page.
+***
+
+Implementation: Create button to update comment.
+
+Test: Clicked on button.
+
+Result: Post page updated with updated comment.
+***
+
+Implementation: Button for the user to delete comment.
+
+Test: Clicked on button.
+
+Result: After confirmation, Post page loaded without the deleted comment.
 ***
 
 ## **Validators**
