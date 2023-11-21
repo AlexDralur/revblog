@@ -1,21 +1,22 @@
 {% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
 
 <!-- Post View -->
-<div class="container-fluid post">
+<div class="container-fluid post-info">
   <div class="row">
     <div class="col d-flex justify-content-between">
       <div class="author-title d-inline">
         <h1 class="post-title">{{ post.title }}</h1>
-        <p class="author d-inline">
+        <p class="author-created d-inline">
           {{ post.author.username }} | {{ post.created_on }}
         </p>
       </div>
+
       <!-- Favourite Button -->
-      <div id="favourite-section">
+      <div class="favourite-section">
         <p class="d-inline">Favourite</p>
         <a
           href="{% url 'favourite' category_slug=post.category.slug post_slug=post.slug %}"
-          class="favorite-link"
+          class="favorite-icon"
         >
           {% if favourite %}
           <i class="fa-sharp fa-solid fa-star"></i>
@@ -26,6 +27,7 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col post-content">
       <div class="post-text">{{ post.content }}</div>
@@ -41,95 +43,121 @@
         <img src="" alt="" />
         {% endif %}
       </div>
-    </div>
-    <!-- Like Button -->
-    <div class="row post-numbers">
-      <div class="col-1 like-numbers">
-        <a
-          href="{% url 'like' category_slug=post.category.slug post_slug=post.slug %}"
-          class="like-link d-inline"
-        >
-          {% if liked %}
-          <i class="fa-sharp fa-solid fa-heart"></i>
-          {% else %}
-          <i class="fa-sharp fa-regular fa-heart"></i>
+
+      <div class="update-delete-time d-flex justify-content-between">
+        <!-- Update and Delete Post Buttons-->
+        {% if user.is_authenticated and user == post.author %}
+        <div class="update-delete me-2 d-flex">
+          <a
+            class="nav-link me-3"
+            href="{% url 'update_post' category_slug=post.category.slug post_slug=post.slug %}"
+            >UPDATE POST</a
+          >
+          <a
+            class="nav-link"
+            href="{% url 'delete_post' category_slug=post.category.slug post_slug=post.slug %}"
+          >
+            DELETE POST
+          </a>
+        </div>
+        {% endif %}
+
+        <!-- Update time on the post -->
+        <span class="update-time">
+          {% if post.updated_at == post.created_on %} {% else %}
+          <p>Last updated on: {{ post.updated_at }}</p>
           {% endif %}
-          <span class="like-count d-inline">{{ post.number_of_likes }}</span>
-        </a>
+        </span>
       </div>
-      <div class="col-1 comment-numbers d-inline">
-        <i class="fa-regular fa-comment"></i> {{ post.number_of_comments }}
+
+      <hr class="hr-post" />
+
+      <!-- Like Button -->
+      <div class="row post-numbers">
+        <div class="col-1 like-numbers">
+          <a
+            href="{% url 'like' category_slug=post.category.slug post_slug=post.slug %}"
+            class="like-link d-inline"
+          >
+            {% if liked %}
+            <i class="fa-sharp fa-solid fa-heart"></i>
+            {% else %}
+            <i class="fa-sharp fa-regular fa-heart"></i>
+            {% endif %}
+            <span class="like-count d-inline">{{ post.number_of_likes }}</span>
+          </a>
+        </div>
+        <div class="col-1 comment-numbers d-inline">
+          <i class="fa-regular fa-comment"></i>
+          <span class="number-comments-post"
+            >{{ post.number_of_comments }}</span
+          >
+        </div>
       </div>
-      <!-- Update time on the post -->
-      {% if post.updated_at == post.created_on %} {% else %}
-      <p>Last updated on: {{ post.updated_at }}</p>
-      {% endif %}
     </div>
   </div>
-  <!-- Update and Delete Post Buttons-->
-  {% if user.is_authenticated and user == post.author %}
-  <div class="post-add">
-    <a
-      class="nav-link"
-      href="{% url 'update_post' category_slug=post.category.slug post_slug=post.slug %}"
-      >Update Post</a
-    >
-    <a
-      class="nav-link"
-      href="{% url 'delete_post' category_slug=post.category.slug post_slug=post.slug %}"
-    >
-      Delete Post
-    </a>
-  </div>
-  {% endif %}
-  <!-- Comments -->
-  <div class="comments-view">
-    {% for comment in comments %}
-    <p>Posted by: {{ comment.name }} | {{ comment.created_on }}</p>
-    <p>{{ comment.body }}</p>
-    {% if comment.updated_at == comment.created_on %} {% else %}
-    <p>Last updated on: {{ comment.updated_at }}</p>
-    {% endif %}
 
-    <!-- Update and Delete Comment Buttons -->
-    {% if user.is_authenticated and user.username == comment.name %}
-    <a
-      class="nav-link"
-      href="{% url 'update_comment' category_slug=post.category.slug post_slug=post.slug pk=comment.pk %}"
-    >
-      Update Comment
-    </a>
-    <a
-      class="nav-link"
-      href="{% url 'delete_comment' category_slug=post.category.slug post_slug=post.slug pk=comment.pk %}"
-    >
-      Delete Comment
-    </a>
+  <div class="row">
+    <!-- Comments -->
+    <div class="comments-view">
+      {% for comment in comments %}
+      <div class="comment">
+        <p class="comment-details">
+          Posted by: {{ comment.name }} | {{ comment.created_on }}
+        </p>
+        <p>{{ comment.body }}</p>
+        {% if user.is_authenticated and user.username == comment.name %}
+        <hr class="m-0" />
+        <div class="update-delete-time-comment d-flex justify-content-between">
+          <div class="update-delete me-2 d-flex">
+            <!-- Update and Delete Comment Buttons -->
+            <a
+              class="nav-link me-3"
+              href="{% url 'update_comment' category_slug=post.category.slug post_slug=post.slug pk=comment.pk %}"
+            >
+              Update Comment
+            </a>
+            <a
+              class="nav-link"
+              href="{% url 'delete_comment' category_slug=post.category.slug post_slug=post.slug pk=comment.pk %}"
+            >
+              Delete Comment
+            </a>
+          </div>
+          <!-- Update time on the post -->
+          <span class="update-time">
+            {% if comment.updated_at == comment.created_on %} {% else %}
+            <p>Last updated on: {{ comment.updated_at }}</p>
+            {% endif %}
+          </span>
+        </div>
 
-    {% endif %} {% empty %}
-    <h3>No comments yet.</h3>
-    {% endfor %}
-  </div>
-  <!-- New comment form -->
-  {% if user.is_authenticated %}
-  <div class="cold-md-4 card mb-4 mt-3">
-    <div class="card-body">
-      <h3>Leave a comment:</h3>
-      <p>Posting as: {{ user.username }}</p>
-      <form style="margin-top: 1.3em" method="post">
-        {{ comment_form | crispy }} {% csrf_token %}
-        <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-      </form>
+        {% endif %}
+      </div>
+      {% empty %}
+      <h3 class="no-comments">No comments yet.</h3>
+      {% endfor %}
     </div>
+
+    <!-- New comment form -->
+    {% if user.is_authenticated %}
+    <div class="comment-form">
+      <div class="card-body">
+        <h3>Leave a comment:</h3>
+        <p>Commenting as: {{ user.username }}</p>
+        <form style="margin-top: 1.3em" method="post">
+          {{ comment_form | crispy }} {% csrf_token %}
+          <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+        </form>
+      </div>
+    </div>
+    {% else %}
   </div>
-  {% else %}
   <a
     class="nav-link btn btn-outline justify-content-center"
     id="login-comment"
     href="{% url 'account_login' %}"
     >Login to leave a comment</a
   >
-  {% endif %}
+  {% endif %} {% endblock %}
 </div>
-
-{% endblock %}

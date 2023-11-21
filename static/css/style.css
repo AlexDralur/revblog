@@ -5,14 +5,24 @@ body {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    font-family: "Open-Sans", sans-serif;
     padding: 0;
     min-height: 100vh;
+    margin-bottom: 9rem;
+    color: #1b1b1b;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Raleway", sans-serif;
 }
 
 .header {
     margin: 2rem 0 1rem 0;
     padding: 0;
-    font-family: "Raleway", sans-serif;
     font-weight: 700;
     color: #f54703;
     width: 50%;
@@ -20,6 +30,14 @@ body {
 
 .link-forms {
     color: #f54703;
+}
+
+#navbar {
+    background-color: #ff7518;
+}
+
+a {
+    text-decoration: none;
 }
 
 /*--------------- MAIN PAGES -------------------------*/
@@ -65,11 +83,12 @@ body {
     width: auto;
     font-size: 0.8rem;
     float: right;
-    color: #000;
+    color: #1b1b1b;
 }
 
 .category-content {
     width: inherit;
+    color: #1b1b1b;
 }
 
 /* POSTS LIST */
@@ -83,9 +102,10 @@ body {
 
 .post-info {
     background-color: #fff;
+    margin-top: 2rem;
     margin-bottom: 0.2rem;
     border-radius: 1rem;
-    padding: 1rem 1rem 0 1rem;
+    padding: 1rem;
 }
 
 .post-title-list {
@@ -99,6 +119,66 @@ body {
 .number-comments {
     max-width: fit-content;
     font-size: 0.8rem;
+}
+
+/* POST */
+
+.post-title {
+    font-size: 2rem;
+}
+
+.author-created {
+    font-size: 0.8rem;
+}
+
+.fa-sharp {
+    color: #1b1b1b;
+}
+
+.post-content {
+    margin: 2rem 0;
+}
+
+.hr-post {
+    margin: 0.2rem 0 1rem 0;
+}
+
+.like-count,
+.number-comments-post {
+    color: #1b1b1b;
+}
+
+.update-delete-time {
+    margin-top: 2rem;
+}
+
+.update-delete-time-comment {
+    margin-top: 0.2rem;
+}
+
+.update-delete,
+.comment-details,
+.update-time {
+    font-size: 0.8rem;
+}
+
+.comment,
+.comment-form {
+    border: 1px solid #8d99ae;
+    border-radius: 1rem;
+    padding: 1rem 1rem 0 1rem;
+    margin-bottom: 1rem;
+}
+
+#post-image {
+    width: 3rem;
+    height: 3rem;
+}
+
+#login-comment {
+    color: #ff7518;
+    border: 1px solid #ff7518;
+    padding: 1rem;
 }
 
 /*----------------------- USER ACCOUNT MANAGEMENT -------------------------*/
@@ -133,6 +213,22 @@ body {
 
 #reset-password-button {
     margin-top: 0.5rem;
+}
+
+/* LOG OUT */
+
+.login-logout-text {
+    color: #fff;
+    width: 100%;
+}
+
+.login-logout-button:hover {
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.login-in-out-confirmation {
+    margin-top: 5rem;
 }
 
 /*------------------------- POSTS -------------------------------*/
@@ -171,114 +267,7 @@ body {
     margin-top: 30%;
 }
 
-/* redo */
-
-p {
-    font-family: "Open-sans", sans-serif;
-    font-weight: 400;
-    color: #000;
-    width: 50%;
-}
-
-a {
-    text-decoration: none;
-}
-
-img {
-    width: 30%;
-    height: auto;
-    object-fit: contain;
-}
-
-.text-end {
-    text-align: center;
-}
-
-.text-end {
-    color: #000;
-}
-
-#navbar {
-    background-color: #ff7518;
-}
-
-#post-image {
-    width: 3rem;
-    height: 3rem;
-}
-
-
-
-.login-logout-text {
-    color: #fff;
-    width: 100%;
-}
-
-.login-logout-button {
-    color: #ff7518;
-    border: 1px solid #ff7518;
-    margin: 2rem 0;
-    padding: 1rem;
-}
-
-.login-logout-button:hover {
-    color: #fff;
-    border: 1px solid #fff;
-}
-
-.login-in-out-confirmation {
-    margin-top: 5rem;
-}
-
-.post {
-    margin-top: 3rem;
-    background-color: #fff;
-}
-
-#login-comment {
-    color: #ff7518;
-    border: 1px solid #ff7518;
-    padding: 1rem;
-    margin-bottom: 5rem;
-}
-
-.post-info {
-    margin-top: 2rem;
-}
-
-.post-content {
-    margin: 2rem 1rem;
-}
-
-/* footer section */
-
-.container-footer {
-    width: 100%;
-    background-color: #ff7518;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.row-social {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 15px;
-}
-
-.col-100-social-networks li {
-    display: inline-block;
-    text-align: center;
-    padding: 20px;
-    height: 40px;
-}
-
-.col-100-social-networks li i {
-    color: #000;
-}
-
-/* footer section */
+/*------------------ FOOTER ------------------------ */
 
 .container-footer {
     width: 80%;
@@ -294,24 +283,21 @@ img {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 15px;
 }
 
 .col-100-social-networks li {
     display: inline-block;
     text-align: center;
-    padding: 20px;
-    height: 40px;
+    padding: 1rem 1rem 0 0;
+    height: 2.5rem;
 }
 
 .col-100-social-networks li i {
-    color: #000;
+    color: #1b1b1b;
 }
 
 .row-copyright {
     text-align: center;
-    padding-top: 15px;
-    min-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
