@@ -217,9 +217,20 @@ a {
 
 /* LOG OUT */
 
+.logout-header {
+    width: fit-content;
+}
+
 .login-logout-text {
     color: #fff;
     width: 100%;
+}
+
+.login-logout-button {
+    color: #ff7518;
+    border: 1px solid #ff7518;
+    margin: 2rem 0 0.5rem;
+    padding: 1rem;
 }
 
 .login-logout-button:hover {
