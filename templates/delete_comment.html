@@ -1,9 +1,11 @@
 {% extends "base.html" %} {% block content %}
 
 <!-- Delete Comment Form -->
-<h1>Are you sure you want do delete your comment?</h1>
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Delete Comment</button>
-</form>
+<div class="delete-comment d-flex align-items-center justify-content-center">
+  <h1 class="header me-2">Are you sure you want do delete your comment?</h1>
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit" class="comment-delete-button">Delete Comment</button>
+  </form>
+</div>
 {% endblock %}
