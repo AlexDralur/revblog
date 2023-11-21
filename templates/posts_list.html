@@ -14,6 +14,7 @@
 <div class="container-fluid">
   <div class="row">
     {% for post in posts %}
+    {% if user in post.favourite.all %}
     <div class="post-info">
       <a
         class="nav-link position-relative"
@@ -24,9 +25,7 @@
         </div>
         <!-- Favourite Icon -->
         <div class="favourite-section position-absolute top-0 end-0">
-          {% if post.favourite %}
           <i class="fa-sharp fa-solid fa-star"></i>
-          {% endif %}
         </div>
         <hr class="hr-post-list" />
         <div class="d-flex comment-numbers">
@@ -35,6 +34,21 @@
         </div>
       </a>
     </div>
+    {% else %}
+    <div class="post-info">
+        <a class="nav-link position-relative"
+            href="{% url 'post_detail' category_slug=post.category.slug post_slug=post.slug %}">
+            <div class="title-content-link">
+                <h2 class="post-title-list">{{ post.title }}</h2>
+            </div>
+            <hr class="hr-post-list" />
+            <div class="d-flex comment-numbers">
+                <p class="me-2 number-comments">Comments:</p>
+                <span class="number-comments">{{ post.number_of_comments }}</span>
+            </div>
+        </a>
+    </div>
+    {% endif %}
     {% endfor %}
   </div>
 </div>

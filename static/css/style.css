@@ -24,7 +24,7 @@ h5 {
     margin: 2rem 0 1rem 0;
     padding: 0;
     font-weight: 700;
-    color: #f54703;
+    color: #FF7518;
     width: 50%;
 }
 
@@ -33,7 +33,15 @@ h5 {
 }
 
 #navbar {
-    background-color: #ff7518;
+    background-color: #F54703;
+}
+
+#navbarText>ul>li>a {
+    color: #000;
+}
+
+#navbarText>span {
+    color: #000;
 }
 
 a {
@@ -282,7 +290,7 @@ a {
 
 .container-footer {
     width: 80%;
-    background-color: #ff7518;
+    background-color: #F54703;
     display: flex;
     flex-direction: column;
     position: fixed;
