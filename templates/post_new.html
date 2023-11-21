@@ -1,10 +1,10 @@
 {% extends "base.html" %} {% block content %}
 
 <!-- New Post Form -->
-<h2 class="new-update-post-header">New Post</h2>
+<h2 class="header">New Post</h2>
 <form method="post">
   {% csrf_token %}
-  <div class="new-post container position-relative">
+  <div class="new-update-post container position-relative">
     <div class="label-post-title">{{ form.title.label_tag }}</div>
     <div class="field-post-title">{{ form.title }}</div>
     <div class="label-post-content">{{ form.content.label_tag }}</div>
@@ -18,7 +18,7 @@
     <button
       type="submit"
       class="position-absolute bottom-0 end-0"
-      id="post-submit-button"
+      id="post-button"
     >
       Create Post
     </button>

@@ -39,7 +39,6 @@ body {
     flex-direction: column;
     width: max-content;
     margin-top: 1rem;
-
 }
 
 .category-title-content {
@@ -59,14 +58,14 @@ body {
 
 /* NEW POST */
 
-.new-update-post-header {
+.header {
     margin: 2rem 0 1rem 0;
     padding: 0;
 }
 
-.new-post {
+.new-update-post {
     width: 100%;
-    background-color: #1B1B1B;
+    background-color: #1b1b1b;
     border-radius: 1rem;
     padding: 2rem;
     border: 1px solid #fff;
@@ -77,11 +76,23 @@ body {
     margin-bottom: 1rem;
 }
 
-#post-submit-button {
+#post-button {
     margin: 0 1rem 1rem 0;
     background-color: #464545;
     color: #fff;
     border-radius: 1rem;
+}
+
+/* DELETE POST */
+
+.delete-post {
+    width: 100%;
+    background-color: #1b1b1b;
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid #fff;
+    color: #fff;
+    margin-top: 30%;
 }
 
 /* redo */
