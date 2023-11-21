@@ -18,9 +18,9 @@ body {
     width: 50%;
 }
 
-/* SIGN UP */
+/* SIGN UP & SIGN IN */
 
-.sign-up {
+.sign-up-in {
     width: 100%;
     background-color: #1b1b1b;
     border-radius: 1rem;
@@ -40,7 +40,7 @@ body {
     color: #f54703;
 }
 
-.sign-up>form>* {
+.sign-up-in>form>* {
     margin-bottom: 1rem;
 }
 
@@ -106,7 +106,7 @@ body {
     margin-bottom: 1rem;
 }
 
-#post-button {
+.form-button {
     margin: 0 1rem 1rem 0;
     background-color: #464545;
     color: #fff;
