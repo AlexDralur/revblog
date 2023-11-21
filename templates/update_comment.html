@@ -1,9 +1,15 @@
 {% extends "base.html" %} {% block content %}
 
 <!-- Update Comment Form -->
-<h1>Update Comment</h1>
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Update Comment</button>
-</form>
+<h1 class="header">Update Comment</h1>
+<div class="update-comment">
+  <form method="post" class="d-flex flex-column">
+    {% csrf_token %} 
+    <div class="comment-label">{{ form.body.label_tag }}</div>
+    {{ form.body }}
+    <div class="update-button">
+      <button type="submit" class="form-button" id="update-comment-button">Update Comment</button>
+    </div>
+  </form>
+</div>
 {% endblock %}

@@ -4,7 +4,7 @@
 <h1 class="header">Update Post</h1>
 <form method="post">
   {% csrf_token %}
-  <div class="new-update-post container position-relative">
+  <div class="new-update-post position-relative">
     <div class="label-post-title">{{ form.title.label_tag }}</div>
     <div class="field-post-title">{{ form.title }}</div>
     <div class="label-post-content">{{ form.content.label_tag }}</div>

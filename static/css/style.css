@@ -2,7 +2,6 @@
 
 body {
     background-color: #000;
-    width: 80%;
     margin-left: auto;
     margin-right: auto;
     font-family: "Open-Sans", sans-serif;
@@ -10,6 +9,10 @@ body {
     min-height: 100vh;
     margin-bottom: 9rem;
     color: #1b1b1b;
+}
+
+main {
+    margin: 0 1rem;
 }
 
 h1,
@@ -24,7 +27,7 @@ h5 {
     margin: 2rem 0 1rem 0;
     padding: 0;
     font-weight: 700;
-    color: #FF7518;
+    color: #ff7518;
     width: 50%;
 }
 
@@ -33,7 +36,7 @@ h5 {
 }
 
 #navbar {
-    background-color: #F54703;
+    background-color: #f54703;
 }
 
 #navbarText>ul>li>a {
@@ -283,14 +286,35 @@ a {
     padding: 2rem;
     border: 1px solid #fff;
     color: #fff;
-    margin-top: 30%;
+    margin-top: 15%;
+}
+
+/*----------------------- COMMENT MANAGEMENT -----------------------------*/
+
+/* UPDATE */
+
+.update-comment {
+    width: 100%;
+    background-color: #1b1b1b;
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.comment-label {
+    margin-bottom: 1rem;
+}
+
+#update-comment-button {
+    margin-top: 1rem;
 }
 
 /*------------------ FOOTER ------------------------ */
 
 .container-footer {
-    width: 80%;
-    background-color: #F54703;
+    width: 100%;
+    background-color: #f54703;
     display: flex;
     flex-direction: column;
     position: fixed;
