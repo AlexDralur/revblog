@@ -1,11 +1,11 @@
 {% extends "base.html" %} {% load i18n %} {% block content %}
 <h1 class="header">{% trans "Sign Up" %}</h1>
 
-<div class="sign-up-in">
+<div class="user-account-main-div">
   <p>
     {% blocktrans %}
-    <h2 class="sign-in-text">Already have an account? Then please
-    <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</h2>
+    <h2 class="info-text">Already have an account? Then please
+    <a href="{{ login_url }}" class="link-forms">sign in</a>.{% endblocktrans %}</h2>
   </p>
 
   <form

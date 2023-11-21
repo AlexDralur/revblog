@@ -18,30 +18,8 @@ body {
     width: 50%;
 }
 
-/* SIGN UP & SIGN IN */
-
-.sign-up-in {
-    width: 100%;
-    background-color: #1b1b1b;
-    border-radius: 1rem;
-    padding: 2rem;
-    border: 1px solid #fff;
-    color: #fff;
-    margin-top: 2rem;
-}
-
-.sign-in-text {
-    color: #fff;
-    font-size: 1rem;
-    margin-bottom: 2rem;
-}
-
-.sign-in-text>a {
+.link-forms {
     color: #f54703;
-}
-
-.sign-up-in>form>* {
-    margin-bottom: 1rem;
 }
 
 /* INDEX PAGE */
@@ -90,6 +68,42 @@ body {
 .category-content {
     width: inherit;
 }
+
+/*----------------------- USER ACCOUNT MANAGEMENT -------------------------*/
+
+/* SIGN UP & SIGN IN */
+
+.user-account-main-div {
+    width: 100%;
+    background-color: #1b1b1b;
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid #fff;
+    color: #fff;
+    margin-top: 2rem;
+}
+
+.info-text {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.user-account-main-div>form>* {
+    margin-bottom: 1rem;
+}
+
+/* PASSWORD RESET */
+
+#contact-us-reset {
+    margin: 2rem 0 0 auto;
+}
+
+#reset-password-button {
+    margin-top: 0.5rem;
+}
+
+/*------------------------- POSTS -------------------------------*/
 
 /* NEW POST */
 
