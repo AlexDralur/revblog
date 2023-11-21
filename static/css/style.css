@@ -9,6 +9,41 @@ body {
     min-height: 100vh;
 }
 
+.header {
+    margin: 2rem 0 1rem 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    color: #f54703;
+    width: 50%;
+}
+
+/* SIGN UP */
+
+.sign-up {
+    width: 100%;
+    background-color: #1b1b1b;
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid #fff;
+    color: #fff;
+    margin-top: 2rem;
+}
+
+.sign-in-text {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.sign-in-text>a {
+    color: #f54703;
+}
+
+.sign-up>form>* {
+    margin-bottom: 1rem;
+}
+
 /* INDEX PAGE */
 
 .category-header {
@@ -58,11 +93,6 @@ body {
 
 /* NEW POST */
 
-.header {
-    margin: 2rem 0 1rem 0;
-    padding: 0;
-}
-
 .new-update-post {
     width: 100%;
     background-color: #1b1b1b;
@@ -96,13 +126,6 @@ body {
 }
 
 /* redo */
-
-h2 {
-    font-family: "Raleway", sans-serif;
-    font-weight: 700;
-    color: #f54703;
-    width: 50%;
-}
 
 p {
     font-family: "Open-sans", sans-serif;

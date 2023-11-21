@@ -1,21 +1,55 @@
-{% extends "account/base.html" %}
+{% extends "base.html" %} {% load i18n %} {% block content %}
+<h1 class="header">{% trans "Sign Up" %}</h1>
 
-{% load i18n %}
+<div class="sign-up">
+  <p>
+    {% blocktrans %}
+    <h2 class="sign-in-text">Already have an account? Then please
+    <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</h2>
+  </p>
 
-{% block head_title %}{% trans "Signup" %}{% endblock head_title %}
+  <form
+    class="signup"
+    id="signup_form"
+    method="post"
+    action="{% url 'account_signup' %}"
+  >
+    {% csrf_token %}
 
-{% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+    <div class="username d-flex">
+        <div class="label-username me-2">{{ form.username.label_tag }}</div>
+        <div class="field-username">{{ form.username }}</div>
+    </div>
+    <div class="email d-flex">
+        <div class="label-email me-2">{{ form.email.label_tag }}</div>
+        <div class="field-email">{{ form.email }}</div>
+    </div>
+    <div class="password1 d-flex">
+        <div class="label-password1 me-2">{{ form.password1.label_tag }}</div>
+        <div class="button-password1">{{form.password1}}</div>
+    </div>
+    <ul class="instructions-password">
+      <li>
+        Your password can&#2019t be too similar to your other personal information.
+      </li>
+      <li>Your password must contain at least 8 characters.</li>
+      <li>Your password can&#2019t be a commonly used password.</li>
+      <li>Your password can&#2019t be entirely numeric.</li>
+    </ul>
+    <div class="password2 d-flex">
+        <div class="label-password2 me-2">{{ form.password2.label_tag }}</div>
+        <div class="button-password2">{{form.password2}}</div>
+    </div>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+    {% if redirect_field_value %}
+    <input
+      type="hidden"
+      name="{{ redirect_field_name }}"
+      value="{{ redirect_field_value }}"
+    />
+    {% endif %}
+    <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+  </form>
+</div>
 
 {% endblock content %}
