@@ -391,11 +391,8 @@ input[type="text"] {
 
 @media (max-width: 992px) {
 
-    body {
+    main {
         width: 80%;
     }
-    
-    .container-footer {
-        width: 80%;
-    }
+
 }
