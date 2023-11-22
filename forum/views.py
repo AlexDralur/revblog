@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic, View
-from .models import Category, Post, UserLike, Comment
+from .models import Category, Post, Comment
 from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -26,21 +26,8 @@ class CategoryDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
         category = get_object_or_404(Category, slug=slug)
-        all_posts = Post.objects.filter(
+        posts = Post.objects.filter(
             category=category).order_by('-created_on')
-
-        liked_posts = []
-        favorite_posts = []
-
-        if request.user.is_authenticated:
-            liked_posts = UserLike.objects.filter(
-                user=request.user, post__in=all_posts).values_list(
-                    'post_id', flat=True)
-            favorite_posts = Post.objects.filter(
-                favourite=request.user, category=category).order_by(
-                    '-created_on')
-
-        posts = favorite_posts | all_posts
 
         return render(
             request,
@@ -48,7 +35,6 @@ class CategoryDetail(View):
             {
                 'category': category,
                 'posts': posts,
-                'liked_posts': liked_posts,
             },
         )
 

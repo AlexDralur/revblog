@@ -4,6 +4,8 @@ from cloudinary.models import CloudinaryField
 
 
 class Category(models.Model):
+    """ MODEL FOR CATEGORIES """
+
     title = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     content = models.TextField()
@@ -22,6 +24,8 @@ class Category(models.Model):
 
 
 class Post(models.Model):
+    """ MODEL FOR POSTS """
+
     title = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     author = models.ForeignKey(
@@ -51,6 +55,8 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
+    """ MODEL FOR COMMENTS """
+
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=80)
@@ -66,9 +72,6 @@ class Comment(models.Model):
         return f'Comment {self.body} by {self.name}'
 
 
-class UserLike(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
-    class Meta:
-        unique_together = ('user', 'post')
+
+
