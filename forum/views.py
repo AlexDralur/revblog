@@ -13,6 +13,8 @@ from django.db import IntegrityError
 
 
 class CategoryList(generic.ListView):
+    """ VIEW TO DISPLAY THE LIST OF CATEGORIES """
+
     model = Category
     queryset = Category.objects.order_by('-created_on')
     template_name = 'index.html'
@@ -20,17 +22,25 @@ class CategoryList(generic.ListView):
 
 
 class CategoryDetail(View):
+    """ VIEW TO DISPLAY THE LIST OF POSTS INSIDE A CATEGORY """
+
     def get(self, request, slug, *args, **kwargs):
         category = get_object_or_404(Category, slug=slug)
-        posts = Post.objects.filter(category=category).order_by('-created_on')
-
-        print(f"Number of posts: {category.number_of_posts()}")
+        all_posts = Post.objects.filter(
+            category=category).order_by('-created_on')
 
         liked_posts = []
+        favorite_posts = []
+
         if request.user.is_authenticated:
             liked_posts = UserLike.objects.filter(
-                user=request.user, post__in=posts).values_list(
+                user=request.user, post__in=all_posts).values_list(
                     'post_id', flat=True)
+            favorite_posts = Post.objects.filter(
+                favourite=request.user, category=category).order_by(
+                    '-created_on')
+
+        posts = favorite_posts | all_posts
 
         return render(
             request,
@@ -44,6 +54,8 @@ class CategoryDetail(View):
 
 
 class PostDetail(DetailView):
+    """ VIEW TO DISPLAY A SPECIFIC POST """
+
     model = Post
     template_name = 'post.html'
     context_object_name = 'post'
@@ -51,7 +63,8 @@ class PostDetail(DetailView):
     def get_object(self, queryset=None):
         category_slug = self.kwargs.get('category_slug')
         post_slug = self.kwargs.get('post_slug')
-        return get_object_or_404(Post, category__slug=category_slug, slug=post_slug)
+        return get_object_or_404(
+            Post, category__slug=category_slug, slug=post_slug)
 
     def post(self, request, *args, **kwargs):
         post = self.get_object()
@@ -63,7 +76,11 @@ class PostDetail(DetailView):
             new_comment.post = post
             new_comment.name = request.user.username
             new_comment.save()
-            return redirect('post_detail', category_slug=post.category.slug, post_slug=post.slug)
+            return redirect(
+                'post_detail',
+                category_slug=post.category.slug,
+                post_slug=post.slug
+            )
 
         context = self.get_context_data(object=post, comment_form=comment_form)
         return self.render_to_response(context)
@@ -98,6 +115,8 @@ class PostDetail(DetailView):
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
+    """ VIEW TO DISPLAY THE FORM TO PUBLISH A NEW POST """
+
     model = Post
     form_class = PostForm
     template_name = 'post_new.html'
@@ -124,11 +143,13 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         category_slug = self.kwargs.get('category_slug')
         success_url = reverse_lazy('posts_list', kwargs={
-                                   'slug': category_slug})
+            'slug': category_slug})
         return success_url
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
+    """ VIEW TO DISPLAY THE FORM TO EDIT A POST """
+
     model = Post
     form_class = PostForm
     template_name = 'post_update.html'
@@ -143,12 +164,15 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         category_slug = self.kwargs.get('category_slug')
         post_slug = self.kwargs.get('post_slug')
-        success_url = reverse_lazy('post_detail', kwargs={
-                                   'category_slug': category_slug, 'post_slug': post_slug})
+        success_url = reverse_lazy(
+            'post_detail', kwargs={
+                'category_slug': category_slug, 'post_slug': post_slug})
         return success_url
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
+    """ VIEW TO DELETE A POST """
+
     model = Post
     template_name = 'post_delete.html'
     slug_url_kwarg = 'post_slug'
@@ -161,6 +185,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class FavouritePost(LoginRequiredMixin, View):
+    """ VIEW IF THE USER FAVOURITE A POST """
 
     def get(self, request, category_slug, post_slug):
         post = get_object_or_404(
@@ -171,10 +196,12 @@ class FavouritePost(LoginRequiredMixin, View):
             post.favourite.remove(request.user)
         else:
             post.favourite.add(request.user)
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse_lazy('post')))
+        return HttpResponseRedirect(
+            request.META.get('HTTP_REFERER', reverse_lazy('post')))
 
 
 class LikedPost(LoginRequiredMixin, View):
+    """ VIEW IF THE USER LIKE A POST """
 
     def get(self, request, category_slug, post_slug):
         post = get_object_or_404(
@@ -185,10 +212,13 @@ class LikedPost(LoginRequiredMixin, View):
             post.likes.remove(request.user)
         else:
             post.likes.add(request.user)
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse_lazy('post')))
+        return HttpResponseRedirect(
+            request.META.get('HTTP_REFERER', reverse_lazy('post')))
 
 
 class CommentUpdateView(LoginRequiredMixin, View):
+    """ VIEW IF THE USER WANTS TO UPDATE A COMMENT """
+
     template_name = 'update_comment.html'
 
     def get(self, request, category_slug, post_slug, pk):
@@ -206,8 +236,9 @@ class CommentUpdateView(LoginRequiredMixin, View):
         if form.is_valid():
             form.instance.updated_at = timezone.now()
             form.save()
-            post_url = reverse_lazy('post_detail', kwargs={
-                                    'category_slug': category_slug, 'post_slug': post_slug})
+            post_url = reverse_lazy(
+                'post_detail', kwargs={
+                    'category_slug': category_slug, 'post_slug': post_slug})
             return redirect(post_url)
 
         context = {'form': form, 'comment': comment_update}
@@ -215,16 +246,20 @@ class CommentUpdateView(LoginRequiredMixin, View):
 
 
 class CommentDeleteView(LoginRequiredMixin, DeleteView):
+    """ VIEW IF THE USER WANTS TO DELETE A COMMENT """
+
     model = Comment
     template_name = 'delete_comment.html'
 
     def get_object(self, queryset=None):
         pk = self.kwargs.get('pk')
-        return get_object_or_404(Comment, pk=pk, name=self.request.user.username)
+        return get_object_or_404(
+            Comment, pk=pk, name=self.request.user.username)
 
     def get_success_url(self):
         category_slug = self.kwargs.get('category_slug')
         post_slug = self.kwargs.get('post_slug')
-        success_url = reverse_lazy('post_detail', kwargs={
-                                   'category_slug': category_slug, 'post_slug': post_slug})
+        success_url = reverse_lazy(
+            'post_detail', kwargs={
+                'category_slug': category_slug, 'post_slug': post_slug})
         return success_url
