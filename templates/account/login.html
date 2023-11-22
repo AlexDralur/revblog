@@ -7,9 +7,7 @@
     {% csrf_token %}
 
     <div class="username">{{ form.login.label_tag}} {{ form.login }}</div>
-    <div class="passoword">
-      {{form.password.label_tag }} {{ form.password }}
-    </div>
+    <div class="password">{{form.password.label_tag }} {{ form.password }}</div>
     <div class="remember">
       {{ form.remember.label_tag }} {{ form.remember }}
     </div>

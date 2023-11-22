@@ -5,7 +5,7 @@
   <h1 class="header me-2">Are you sure you want do delete your post?</h1>
   <form method="post">
     {% csrf_token %} {{ form.as_p }}
-    <button type="submit" class="form-button">Delete Post</button>
+    <button type="submit" class="delete-button">Delete Post</button>
   </form>
 </div>
 {% endblock %}
