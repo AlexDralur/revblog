@@ -35,6 +35,19 @@ h5 {
     color: #f54703;
 }
 
+a {
+    text-decoration: none;
+}
+
+textarea,
+input[type="text"] {
+    border-radius: 1rem;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+/*---------------- NAVBAR --------------------*/
+
 #navbar {
     background-color: #f54703;
 }
@@ -47,15 +60,11 @@ h5 {
     color: #000;
 }
 
-a {
-    text-decoration: none;
-}
-
-textarea,
-input[type="text"] {
-    border-radius: 1rem;
-    padding: 0 1rem;
-    width: 100%;
+.navbar-brand {
+    background-color: #1b1b1b;
+        border-radius: 1rem;
+        padding: 0 0.5rem;
+        color: #fff;
 }
 
 /*--------------- MAIN PAGES -------------------------*/
