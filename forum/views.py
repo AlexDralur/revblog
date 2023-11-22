@@ -56,6 +56,7 @@ class PostDetail(DetailView):
     def post(self, request, *args, **kwargs):
         post = self.get_object()
         comment_form = CommentForm(request.POST)
+        self.handle_image_upload(request, post_instance=post)
 
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
@@ -76,6 +77,24 @@ class PostDetail(DetailView):
         context['liked'] = post.likes.filter(id=user.id).exists()
         context['comments'] = self.get_object().comments.all()
         return context
+
+    def handle_image_upload(self, request, post_instance=None):
+        if request.method == 'POST':
+            form = PostForm(request.POST, request.FILES,
+                            instance=post_instance)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = request.user
+                post.save()
+                return post
+        return None
+
+    def dispatch(self, request, *args, **kwargs):
+        post_instance = self.get_object()
+        if request.user.is_authenticated:
+            self.handle_image_upload(request, post_instance=post_instance)
+
+        return super().dispatch(request, *args, **kwargs)
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
