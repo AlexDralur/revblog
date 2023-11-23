@@ -176,14 +176,14 @@ Result: After confirmation, Post page loaded without the deleted comment.
 
 ## **Validators**
 
-. Lighthouse [Lighthouse screenshot](static/images-docs/revforum_lighthouse.png)
+. Lighthouse ![Lighthouse screenshot](static/images-docs/revforum_lighthouse.png)
 All pages passed the Lighthouse check.
 
-. W3C HTML Validator [W3C HTML Validator screenshot](static/images-docs/w3c_html_validator.png)
+. W3C HTML Validator ![W3C HTML Validator screenshot](static/images-docs/w3c_html_validator.png)
 
-. W3C CSS Validator [W3C CSS Validator screenshot](static/images-docs/w3c-css-validator.png)
+. W3C CSS Validator ![W3C CSS Validator screenshot](static/images-docs/w3c-css-validator.png)
 
-. Python Linter [Python Linter Validator screenshot](static/images-docs/ci_python_linter.png)
+. Python Linter ![Python Linter Validator screenshot](static/images-docs/ci_python_linter.png)
 
 ## **Bugs**
 
