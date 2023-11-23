@@ -56,7 +56,7 @@
         </div>
         {% endif %}
 
-      <hr class="hr-post" />
+      <hr class="hr-post">
 
       <!-- Like Button -->
       <div class="row post-numbers">
@@ -136,13 +136,14 @@
         </form>
       </div>
     </div>
-    {% else %}
   </div>
+  {% else %}
   <a
     class="nav-link btn btn-outline justify-content-center"
     id="login-comment"
     href="{% url 'account_login' %}"
     >Login to leave a comment</a
   >
+  </div>
 </div>
 {% endif %} {% endblock %}

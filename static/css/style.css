@@ -24,7 +24,7 @@ h5 {
 }
 
 .header {
-    margin: 2rem 0 1rem 0;
+    margin: 2rem 0 1rem 25%;
     padding: 0;
     font-weight: 700;
     color: #ff7518;
@@ -223,6 +223,10 @@ input[type="text"] {
 
 .header-update {
     margin: 2rem 0 1rem 0;
+    padding: 0;
+    font-weight: 700;
+    color: #ff7518;
+    width: 50%;
         }
 
 /*----------------------- USER ACCOUNT MANAGEMENT -------------------------*/
