@@ -185,13 +185,21 @@ input[type="text"] {
 }
 
 .update-delete,
-.comment-details,
-.update-time {
+.comment-details {
     font-size: 0.8rem;
 }
 
 .post-text {
     margin: 2rem 0;
+}
+
+.post-image {
+    display: flex;
+    justify-content: center;
+}
+
+.post-image>img{
+    width: 80%;
 }
 
 .comment,
@@ -200,11 +208,6 @@ input[type="text"] {
     border-radius: 1rem;
     padding: 1rem 1rem 0 1rem;
     margin-bottom: 1rem;
-}
-
-#post-image {
-    width: 3rem;
-    height: 3rem;
 }
 
 #login-comment {
