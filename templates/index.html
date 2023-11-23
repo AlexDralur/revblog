@@ -5,7 +5,7 @@
     <!-- Category Selection -->
     <h1 class="category-header">REVforum categories</h1>
     {% for category in category_list %}
-    <div class="justify-content-between category-column" id="category">
+    <div class="justify-content-between category-column">
       <a href="{% url 'posts_list' category.slug %}">
         <div class="align-items-start category-title-content">
           <h2 class="category-title">{{ category.title }}</h2>
