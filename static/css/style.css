@@ -49,7 +49,7 @@ input[type="text"] {
 /*---------------- NAVBAR --------------------*/
 
 #navbar {
-    background-color: #FC6831;
+    background-color: #FC652C;
 }
 
 #navbarText>ul {
@@ -370,7 +370,7 @@ input[type="text"] {
 
 .container-footer {
     width: 100%;
-    background-color: #FC6831;
+    background-color: #FC652C;
     display: flex;
     flex-direction: column;
     position: fixed;
