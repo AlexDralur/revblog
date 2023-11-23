@@ -398,8 +398,9 @@ input[type="password"] {
     height: 2.5rem;
 }
 
-.col-100-social-networks li i {
-    color: #1b1b1b;
+.col-100-social-networks li i,
+.row-copyright>p {
+    color: #fff;
 }
 
 .row-copyright {
