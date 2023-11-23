@@ -62,9 +62,13 @@ input[type="text"] {
 
 .navbar-brand {
     background-color: #1b1b1b;
-        border-radius: 1rem;
-        padding: 0 0.5rem;
-        color: #fff;
+    border-radius: 1rem;
+    padding: 0 0.5rem;
+    color: #fff;
+}
+
+.navbar-brand:hover {
+    color: inherit;
 }
 
 /*--------------- MAIN PAGES -------------------------*/
@@ -215,6 +219,12 @@ input[type="text"] {
     border: 1px solid #ff7518;
     padding: 1rem;
 }
+
+/* UPDATE POST AND COMMENT */
+
+.header-update {
+    margin: 2rem 0 1rem 0;
+        }
 
 /*----------------------- USER ACCOUNT MANAGEMENT -------------------------*/
 
