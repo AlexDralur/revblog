@@ -190,6 +190,10 @@ input[type="text"] {
     font-size: 0.8rem;
 }
 
+.post-text {
+    margin: 2rem 0;
+}
+
 .comment,
 .comment-form {
     border: 1px solid #8d99ae;

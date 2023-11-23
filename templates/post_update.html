@@ -2,7 +2,7 @@
 
 <!-- Update Post Form -->
 <h1 class="header">Update Post</h1>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="new-update-post position-relative">
     <div class="label-post-title">{{ form.title.label_tag }}</div>

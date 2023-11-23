@@ -146,6 +146,24 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
         form.instance.slug = slugify(form.instance.title)
         form.instance.updated_at = timezone.now()
         return super().form_valid(form)
+    
+    def handle_image_upload(self, request, post_instance=None):
+        if request.method == 'POST':
+            form = PostForm(request.POST, request.FILES,
+                            instance=post_instance)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = request.user
+                post.save()
+                return post
+        return None
+
+    def dispatch(self, request, *args, **kwargs):
+        post_instance = self.get_object()
+        if request.user.is_authenticated:
+            self.handle_image_upload(request, post_instance=post_instance)
+
+        return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
         category_slug = self.kwargs.get('category_slug')
