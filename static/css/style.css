@@ -49,7 +49,7 @@ input[type="text"] {
 /*---------------- NAVBAR --------------------*/
 
 #navbar {
-    background-color: #f54703;
+    background-color: #FC6831;
 }
 
 #navbarText>ul {
@@ -57,7 +57,7 @@ input[type="text"] {
 }
 
 #navbarText>ul>li>a {
-    color: #000;
+    color: #fff;
 }
 
 .navbar-brand {
@@ -229,13 +229,17 @@ input[type="text"] {
     width: 50%;
         }
 
+.button-image-post>a{
+    color: #f54703;
+}
+
 /*----------------------- USER ACCOUNT MANAGEMENT -------------------------*/
 
 /* SIGN UP & SIGN IN */
 
 .user-account-main-div {
     width: 50%;
-    background-color: #1b1b1b;
+    background-color: #464545;
     border-radius: 1rem;
     padding: 2rem;
     border: 1px solid #fff;
@@ -366,7 +370,7 @@ input[type="text"] {
 
 .container-footer {
     width: 100%;
-    background-color: #f54703;
+    background-color: #FC6831;
     display: flex;
     flex-direction: column;
     position: fixed;
