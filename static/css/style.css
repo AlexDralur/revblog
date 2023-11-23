@@ -205,6 +205,10 @@ input[type="text"] {
     width: 80%;
 }
 
+.leave-comment{
+    font-size: 1.3rem;
+}
+
 .comment,
 .comment-form {
     border: 1px solid #8d99ae;

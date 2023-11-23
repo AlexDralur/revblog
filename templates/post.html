@@ -16,7 +16,7 @@
         <p class="d-inline">Favourite</p>
         <a
           href="{% url 'favourite' category_slug=post.category.slug post_slug=post.slug %}"
-          class="favorite-icon"
+          class="favorite-icon" aria-label="Favourite post"
         >
           {% if favourite %}
           <i class="fa-sharp fa-solid fa-star"></i>
@@ -63,7 +63,7 @@
         <div class="col-1 like-numbers">
           <a
             href="{% url 'like' category_slug=post.category.slug post_slug=post.slug %}"
-            class="like-link d-inline"
+            class="like-link d-inline" aria-label="Like post"
           >
             {% if liked %}
             <i class="fa-sharp fa-solid fa-heart"></i>
@@ -128,7 +128,7 @@
     {% if user.is_authenticated %}
     <div class="comment-form">
       <div class="card-body">
-        <h3>Leave a comment:</h3>
+        <p class="leave-comment">Leave a comment:</p>
         <p>Commenting as: {{ user.username }}</p>
         <form style="margin-top: 1.3em" method="post">
           {{ comment_form | crispy }} {% csrf_token %}
