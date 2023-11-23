@@ -413,4 +413,8 @@ input[type="text"] {
         margin: 0 auto;
     }
 
+    .username>input,
+    .password>input{
+        width: 50%;
+        }
 }
