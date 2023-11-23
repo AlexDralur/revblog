@@ -264,6 +264,7 @@ input[type="text"] {
 
 .logout-header {
     width: fit-content;
+    margin: 2rem 0 1rem 0;
 }
 
 .login-logout-text {
@@ -272,14 +273,14 @@ input[type="text"] {
 }
 
 .login-logout-button {
-    color: #ff7518;
-    border: 1px solid #ff7518;
     margin: 2rem 0 0.5rem;
     padding: 1rem;
+    background-color: #464545;
+    color: #fff;
+    border-radius: 1rem;
 }
 
 .login-logout-button:hover {
-    color: #fff;
     border: 1px solid #fff;
 }
 
@@ -310,6 +311,10 @@ input[type="text"] {
     color: #fff;
     padding: 0 0.5rem;
     border-radius: 1rem;
+}
+
+.form-button:hover {
+    border: 1px solid #fff;
 }
 
 .dropdown-category-post>select {
