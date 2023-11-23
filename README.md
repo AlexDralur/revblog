@@ -2,7 +2,7 @@
 
 ## **Overview**
 
-Revforum is an online forum made with Django framework. It allows people with their shared love for motorcycle to exchange options and experiences. On categories created by the admin, the users can create their own posts and comment on posts made by themselves or others. They can also like, favourite and report posts. When the post is reported, it is flagged for the admin to analyse.
+Revforum is an online forum made with Django framework. It allows people with their shared love for motorcycle to exchange options and experiences. On categories created by the admin, the users can create their own posts and comment on posts made by themselves or others. They can also like and favourite posts.
 
 ![Main screen screenshot]()
 
@@ -42,12 +42,16 @@ Revforum is an online forum made with Django framework. It allows people with th
 
 ### **User Stories:**
 
+* As a user, I want to sign up.
+* As a user, I want to sign in.
+* As a user, I want to sign out.
+* As a user, I want to choose a category to see its posts.
 * As a user, I want to make a post.
-* As a user, I want to comment a post.
+* As a user, I want to add a photo to my post.
 * As a user, I want to update a post.
 * As a user, I want to delete a post.
 * As a user, I want to like a post.
-* As a user, I want to report a post.
+* As a user, I want to comment a post.
 * As a user, I want to update a comment.
 * As a user, I want to delete a comment.
 * As an administrator, I want to create a category.
@@ -84,7 +88,7 @@ Revforum is an online forum made with Django framework. It allows people with th
 
 #### *Post screen:*
 
-* When the user clicks the post, they are presented with: the title, the description, who made it, when it was made, when the last update was made (if there was), the possibility to like, comment and report.
+* When the user clicks the post, they are presented with: the title, the description, who made it, when it was made, the possibility to like and comment.
 
 ![Post screenshot]()
 
@@ -100,6 +104,7 @@ Revforum is an online forum made with Django framework. It allows people with th
 
 * Users could log through their social networks profiles (FB, X) or email.
 * Create a profile page where users can add their personal photos and descriptions.
+* Users could report a post to be checked by the admin.
 ​
 
 ## **Testing Phase**

@@ -51,7 +51,7 @@ input[type="password"] {
 /*---------------- NAVBAR --------------------*/
 
 #navbar {
-    background-color: #FC652C;
+    background-color: #464545;
 }
 
 #navbarText>ul {
@@ -69,7 +69,8 @@ input[type="password"] {
 }
 
 .navbar-brand:hover {
-    color: inherit;
+    text-decoration: none;
+    background-color: transparent !important;
 }
 
 /*--------------- MAIN PAGES -------------------------*/
@@ -377,7 +378,7 @@ input[type="password"] {
 
 .container-footer {
     width: 100%;
-    background-color: #FC652C;
+    background-color: #464545;
     display: flex;
     flex-direction: column;
     position: fixed;
