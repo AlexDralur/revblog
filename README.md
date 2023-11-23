@@ -94,7 +94,7 @@ Revforum is an online forum made with Django framework. It allows people with th
 
 #### *Post screen:*
 
-- When the user clicks the post, they are presented with: the title, the description, who made it, when it was made, when the last update was made (if there was), the possibility to like, comment and report.
+- When the user clicks the post, they are presented with: the title, the description, who made it, when it was made, the possibility to like and comment.
 
 ​
 
