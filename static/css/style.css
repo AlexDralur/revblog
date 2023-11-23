@@ -221,13 +221,13 @@ input[type="text"] {
 /* SIGN UP & SIGN IN */
 
 .user-account-main-div {
-    width: 100%;
+    width: 50%;
     background-color: #1b1b1b;
     border-radius: 1rem;
     padding: 2rem;
     border: 1px solid #fff;
     color: #fff;
-    margin-top: 2rem;
+    margin: 2rem auto;
 }
 
 .info-text {
@@ -416,5 +416,9 @@ input[type="text"] {
     .username>input,
     .password>input{
         width: 50%;
+        }
+
+    .user-account-main-div{
+        width: 100%;
         }
 }
