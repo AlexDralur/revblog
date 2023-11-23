@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
 
 <!-- New Post Form -->
-<h1 class="header">New Post</h1>
+<h1 class="header" id="header-update">New Post</h1>
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="new-update-post position-relative">

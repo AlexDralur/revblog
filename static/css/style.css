@@ -235,7 +235,8 @@ input[type="password"] {
     width: 50%;
         }
 
-.button-image-post>a{
+.button-image-post>a
+.button-image-post>input[type="file"]{
     color: #f54703;
 }
 
