@@ -20,7 +20,9 @@ Revforum is an online forum made with Django framework. It allows people with th
       - [*Main Screen:*](#main-screen)
       - [*Post List screen:*](#post-list-screen)
       - [*Post screen:*](#post-screen)
-      - [*Post screen:*](#post-screen-1)
+      - [*Post Update screen:*](#post-update-screen)
+      - [*Comment Update screen:*](#comment-update-screen)
+      - [*Post and Comment Delete screen:*](#post-and-comment-delete-screen)
   - [**Future-Enhancements**](#future-enhancements)
   - [**Testing Phase**](#testing-phase)
   - [**Validators**](#validators)
@@ -78,23 +80,38 @@ Revforum is an online forum made with Django framework. It allows people with th
 
 * Main screen of the forum. User or visitors (they do not have to be logged) can see the categories.
 
-![Main screen screenshot]()
+![Main screen screenshot](static/images-docs/main_page_screenshot.png)
 
 #### *Post List screen:*
 
 * Once the user/visitor clicks in one category, they are then redirected to all the posts inside that category. If the user is logged, the page shows the favourite posts first, from the newest to the last one.
 
-![Post List screenshot]()
+![Post List screenshot](static/images-docs/posts_list.png)
 
 #### *Post screen:*
 
 * When the user clicks the post, they are presented with: the title, the description, who made it, when it was made, the possibility to like and comment.
 
-![Post screenshot]()
+![Post screenshot](static/images-docs/post_screenshot.png)
 
-#### *Post screen:*
+#### *Post Update screen:*
 
-- When the user clicks the post, they are presented with: the title, the description, who made it, when it was made, the possibility to like and comment.
+- If the user is the one who made the post, they can click on a button to update the post. They can change the title, content, image and the category.
+
+![Post Update screenshot](static/images-docs/post_update_screenshot.png)
+
+#### *Comment Update screen:*
+
+- If the user is the one who made the comment, they can click on a button to update the post. They can change the body of the comment.
+
+![Comment Update screenshot](static/images-docs/comment_update_screenshot.png)
+
+#### *Post and Comment Delete screen:*
+
+- The user has the possibility to delete their own post and comments.
+
+![Post Delete screenshot](static/images-docs/delete_post_screenshot.png)
+![Comment Delete screenshot](static/images-docs/delete_comment_screenshot.png)
 
 ​
 
