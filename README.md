@@ -176,12 +176,14 @@ Result: After confirmation, Post page loaded without the deleted comment.
 
 ## **Validators**
 
-. Python Linter [Python Linter Validator](https://pep8ci.herokuapp.com/)
+. Lighthouse [Lighthouse screenshot](static/images-docs/revforum_lighthouse.png)
+All pages passed the Lighthouse check.
 
-Only error related to the ASCII graphics (W605)
-![Python Linter Validator screenshot - run.py](assets/images-docs/run_py_python_linter.png)
+. W3C HTML Validator [W3C HTML Validator screenshot](static/images-docs/w3c_html_validator.png)
 
-![Python Linter Validator screenshot - words.py](assets/images-docs/words_py_python_linter.png)
+. W3C CSS Validator [W3C CSS Validator screenshot](static/images-docs/w3c-css-validator.png)
+
+. Python Linter [Python Linter Validator screenshot](static/images-docs/ci_python_linter.png)
 
 ## **Bugs**
 
@@ -244,3 +246,4 @@ Resolution✅: Changed to a ForeignKey relation.
 
 - Navbar based on the one used on the code along project "I Think Therefore I Blog" from [CodeInstitute] (<https://github.com/Code-Institute-Solutions/Django3blog>)
 - Ability to like and favourite post based on Tutorial made by [VeryAcademy](<https://www.youtube.com/watch?v=H4QPHLmsZMU&ab_channel=VeryAcademy>)
+- Stackoverflow. Without it, this project would never be completed.

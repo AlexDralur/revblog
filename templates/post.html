@@ -110,12 +110,6 @@
               Delete Comment
             </a>
           </div>
-          <!-- Update time on the post -->
-          <span class="update-time">
-            {% if comment.updated_at is comment.created_on %} {% else %}
-            <p>Last updated on: {{ comment.updated_at }}</p>
-            {% endif %}
-          </span>
         </div>
       </div>
       {% endif %}

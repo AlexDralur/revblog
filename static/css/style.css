@@ -190,7 +190,11 @@ input[type="password"] {
     margin-top: 0.2rem;
 }
 
-.update-delete,
+.update-delete {
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+}
+
 .comment-details {
     font-size: 0.8rem;
 }
