@@ -34,7 +34,7 @@
       <div class="post-image">
         {% if post.featured_image.url == 'placeholder' %}
         {% else %}
-        <img src="{{ post.featured_image.url }}" alt="user-image" />
+        <img src="{{ post.featured_image.url }}" alt="user-image">
         {% endif %}
       </div>
 
@@ -93,7 +93,7 @@
         </p>
         <p>{{ comment.body }}</p>
         {% if user.is_authenticated and user.username == comment.name %}
-        <hr class="m-0" />
+        <hr class="m-0">
         <div class="update-delete-time-comment d-flex justify-content-between">
           <div class="update-delete me-2 d-flex">
             <!-- Update and Delete Comment Buttons -->
@@ -117,9 +117,8 @@
             {% endif %}
           </span>
         </div>
-
-        {% endif %}
       </div>
+      {% endif %}
       {% empty %}
       <h3 class="no-comments">No comments yet.</h3>
       {% endfor %}
@@ -145,5 +144,5 @@
     href="{% url 'account_login' %}"
     >Login to leave a comment</a
   >
-  {% endif %} {% endblock %}
 </div>
+{% endif %} {% endblock %}
