@@ -324,14 +324,8 @@ input[type="text"] {
 
 /* DELETE POST */
 
-.delete-post {
-    width: 100%;
-    background-color: #1b1b1b;
-    border-radius: 1rem;
-    padding: 2rem;
-    border: 1px solid #fff;
-    color: #fff;
-    margin-top: 15%;
+#header-delete{
+    margin: 2rem 1rem 2rem;
 }
 
 /*----------------------- COMMENT MANAGEMENT -----------------------------*/
@@ -353,26 +347,6 @@ input[type="text"] {
 
 #update-comment-button {
     margin-top: 1rem;
-}
-
-/* DELETE COMMENT */
-
-.delete-comment {
-    width: 100%;
-    background-color: #1b1b1b;
-    border-radius: 1rem;
-    padding: 2rem;
-    border: 1px solid #fff;
-    color: #fff;
-    margin-top: 15%;
-}
-
-.delete-button {
-    margin: 2rem 1rem 1rem 0;
-    background-color: #464545;
-    color: #fff;
-    border-radius: 1rem;
-    padding: 0.5rem;
 }
 
 /*------------------ FOOTER ------------------------ */
