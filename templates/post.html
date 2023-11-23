@@ -63,7 +63,7 @@
         <div class="col-1 like-numbers">
           <a
             href="{% url 'like' category_slug=post.category.slug post_slug=post.slug %}"
-            class="d-inline" aria-label="Button to like post "
+            class="d-inline like-button" aria-label="Button to like post "
           >
             {% if liked %}
             <i class="fa-sharp fa-solid fa-heart"></i>
