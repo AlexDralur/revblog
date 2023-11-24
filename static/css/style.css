@@ -308,9 +308,6 @@ input[type="password"] {
     background-color: #464545;
     color: #fff;
     border-radius: 1rem;
-}
-
-.login-logout-button:hover {
     border: 1px solid #fff;
 }
 
