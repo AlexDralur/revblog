@@ -180,6 +180,7 @@ input[type="password"] {
 .like-count,
 .number-comments-post {
     color: #1b1b1b;
+    margin-right: 1rem;
 }
 
 .update-delete-time {
