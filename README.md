@@ -4,7 +4,7 @@
 
 Revforum is an online forum made with Django framework. It allows people with their shared love for motorcycle to exchange options and experiences. On categories created by the admin, the users can create their own posts and comment on posts made by themselves or others. They can also like and favourite posts.
 
-![Main screen screenshot]()
+![Main screen screenshot](static/images-docs/main_page_screenshot.png)
 
 ## Table of contents
 
@@ -78,13 +78,13 @@ Revforum is an online forum made with Django framework. It allows people with th
 
 #### *Main Screen:*
 
-* Main screen of the forum. User or visitors (they do not have to be logged) can see the categories.
+* Main screen of the forum. User or visitors (they do not have to be logged) can see the categories and how many posts there are inside each category.
 
 ![Main screen screenshot](static/images-docs/main_page_screenshot.png)
 
 #### *Post List screen:*
 
-* Once the user/visitor clicks in one category, they are then redirected to all the posts inside that category. If the user is logged, the page shows the favourite posts first, from the newest to the last one.
+* Once the user/visitor clicks in one category, they are then redirected to all the posts inside that category. The user can see how many comments there are in each post.
 
 ![Post List screenshot](static/images-docs/posts_list.png)
 
