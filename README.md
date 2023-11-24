@@ -70,7 +70,7 @@ Revforum is an online forum made with Django framework. It allows people with th
 
 ### **Forum Structure:**
 
-![Forum Structure]()
+![Forum Structure](static/images-docs/diagram_revforum.png)
 
 ## **Current Features**
 
