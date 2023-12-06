@@ -264,3 +264,4 @@ Resolution✅: Changed to a ForeignKey relation.
 - Navbar based on the one used on the code along project "I Think Therefore I Blog" from [CodeInstitute] (<https://github.com/Code-Institute-Solutions/Django3blog>)
 - Ability to like and favourite post based on Tutorial made by [VeryAcademy](<https://www.youtube.com/watch?v=H4QPHLmsZMU&ab_channel=VeryAcademy>)
 - Stackoverflow. Without it, this project would never be completed.
+- Image from mockup post taken from [Motorcycle News](https://www.motorcyclenews.com/bike-reviews/harley-davidson/livewire/2019/)
