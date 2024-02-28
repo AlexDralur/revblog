@@ -3,6 +3,7 @@ from django.views import generic, View
 from .models import Category, Post, Comment
 from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy, reverse
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
@@ -62,6 +63,15 @@ class PostDetail(DetailView):
             new_comment.post = post
             new_comment.name = request.user.username
             new_comment.save()
+            messages.success(request, 'Comment was added to post.')
+            return redirect(
+                'post_detail',
+                category_slug=post.category.slug,
+                post_slug=post.slug
+            )
+        else:
+            messages.error(request, 'Sorry an error occured \
+            while saving your comment. Please try again.')
             return redirect(
                 'post_detail',
                 category_slug=post.category.slug,
@@ -89,7 +99,11 @@ class PostDetail(DetailView):
                 post = form.save(commit=False)
                 post.author = request.user
                 post.save()
+                messages.success(request, 'Image uploaded sucessfully.')
                 return post
+            else:
+                messages.error(request, 'Sorry an error occurred. \
+                Please try again.')
         return None
 
     def dispatch(self, request, *args, **kwargs):
@@ -123,7 +137,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
             messages.error(
                 self.request, "A post with the same title already exists.")
             return self.form_invalid(form)
-
+        
+        messages.success(request, 'Post published.')
         return result
 
     def get_success_url(self):
@@ -155,6 +170,11 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
                 post = form.save(commit=False)
                 post.author = request.user
                 post.save()
+                messages.success('Your image was updated.')
+                return post
+            else:
+                messages.error(request, 'An error has occured while \
+                uploading your image. Please try again.')
                 return post
         return None
 
@@ -185,6 +205,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     def get_object(self, queryset=None):
         category_slug = self.kwargs.get('category_slug')
         post_slug = self.kwargs.get('post_slug')
+        messages.success(request, 'Post deleted successfully.')
         return Post.objects.get(category__slug=category_slug, slug=post_slug)
 
 
@@ -243,7 +264,11 @@ class CommentUpdateView(LoginRequiredMixin, View):
             post_url = reverse_lazy(
                 'post_detail', kwargs={
                     'category_slug': category_slug, 'post_slug': post_slug})
+            messages.success(request, 'Comment added to post.')
             return redirect(post_url)
+        else:
+            messages.error(request, 'An error occured. Please try again.')
+            return rediract(post_url)
 
         context = {'form': form, 'comment': comment_update}
         return render(request, self.template_name, context)
@@ -266,4 +291,5 @@ class CommentDeleteView(LoginRequiredMixin, DeleteView):
         success_url = reverse_lazy(
             'post_detail', kwargs={
                 'category_slug': category_slug, 'post_slug': post_slug})
+        messages.success(self.request, 'Comment deleted successfully.')
         return success_url
