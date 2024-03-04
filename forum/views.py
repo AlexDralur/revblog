@@ -138,7 +138,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
                 self.request, "A post with the same title already exists.")
             return self.form_invalid(form)
         
-        messages.success(request, 'Post published.')
+        messages.success(self.request, 'Post published.')
         return result
 
     def get_success_url(self):
@@ -170,7 +170,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
                 post = form.save(commit=False)
                 post.author = request.user
                 post.save()
-                messages.success('Your image was updated.')
+                messages.success(request,'Your post was updated.')
                 return post
             else:
                 messages.error(request, 'An error has occured while \
@@ -205,7 +205,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     def get_object(self, queryset=None):
         category_slug = self.kwargs.get('category_slug')
         post_slug = self.kwargs.get('post_slug')
-        messages.success(request, 'Post deleted successfully.')
+        messages.success(self.request, 'Post deleted successfully.')
         return Post.objects.get(category__slug=category_slug, slug=post_slug)
 
 
