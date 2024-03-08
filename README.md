@@ -28,6 +28,8 @@ Revforum is an online forum made with Django framework. It allows people with th
   - [**Validators**](#validators)
   - [**Bugs**](#bugs)
   - [**Deployment**](#deployment)
+       - [*Prerequisites:*](#prerequisites)
+       - [*Deployment to Heroku:*](#deployment-to-heroku)
   - [**Tech**](#tech)
   - [**Credits**](#credits)
     - [**Honorable mentions**](#honorable-mentions)
@@ -241,6 +243,31 @@ Resolution✅: Changed to a ForeignKey relation.
 
 ## **Deployment**
 
+## Prerequisites
+
+- [Heroku account](https://signup.heroku.com/).
+- [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli).
+- [Cloudinary](https://cloudinary.com/)
+
+## Deployment to Heroku
+
+1. In the environment, confirm that all the requirements are up to date on the requirements.txt file. This can be done with the following command: `pip3 freeze --local > requirements.txt`.
+2. Also in the environment, confirm that sensitive information is not public displayed, so all of them are kept in the env.py file and that the file itself is mentioned inside the `.gitignore` file so the file is not pushed to the Github repository.
+3. Create a `Procfile` file in the root of the project so Heroku can read the project.
+4. Access Heroku.
+5. Click in New App.
+6. On the new page, choose the name of the app and select the region closest to yours.
+7. Once the app page appears, go to Settings.
+8. Locate the Config Vars button and click.
+9. Add the relevant variables to the app as mentioned below.
+- CLOUDINARY_URL
+- DATABASE_URL
+- SECRET_KEY
+10. Click in Deploy.
+11. In the deployment method, choose Github and connect account.
+12. Below, in App connect to Github, choose the relevant repository.
+13. Check the box for automatic deploys (this will guarantee that the app is always up to date with the last updated version in Github).
+14. Click deploy.
 
 ## **Tech**
 
