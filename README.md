@@ -248,6 +248,7 @@ Resolution✅: Changed to a ForeignKey relation.
 - [Heroku account](https://signup.heroku.com/).
 - [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli).
 - [Cloudinary](https://cloudinary.com/)
+- [ElephantSQL] (https://www.elephantsql.com/)
 
 ## Deployment to Heroku
 
