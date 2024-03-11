@@ -56,7 +56,6 @@ class PostDetail(DetailView):
     def post(self, request, *args, **kwargs):
         post = self.get_object()
         comment_form = CommentForm(request.POST)
-        self.handle_image_upload(request, post_instance=post)
 
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
@@ -64,22 +63,11 @@ class PostDetail(DetailView):
             new_comment.name = request.user.username
             new_comment.save()
             messages.success(request, 'Comment was added to post.')
-            return redirect(
-                'post_detail',
-                category_slug=post.category.slug,
-                post_slug=post.slug
-            )
         else:
             messages.error(request, 'Sorry an error occured \
             while saving your comment. Please try again.')
-            return redirect(
-                'post_detail',
-                category_slug=post.category.slug,
-                post_slug=post.slug
-            )
 
-        context = self.get_context_data(object=post, comment_form=comment_form)
-        return self.render_to_response(context)
+        return redirect('post_detail', category_slug=post.category.slug, post_slug=post.slug)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -91,27 +79,6 @@ class PostDetail(DetailView):
         context['comments'] = self.get_object().comments.all()
         return context
 
-    def handle_image_upload(self, request, post_instance=None):
-        if request.method == 'POST':
-            form = PostForm(request.POST, request.FILES,
-                            instance=post_instance)
-            if form.is_valid():
-                post = form.save(commit=False)
-                post.author = request.user
-                post.save()
-                messages.success(request, 'Image uploaded sucessfully.')
-                return post
-            else:
-                messages.error(request, 'Sorry an error occurred. \
-                Please try again.')
-        return None
-
-    def dispatch(self, request, *args, **kwargs):
-        post_instance = self.get_object()
-        if request.user.is_authenticated:
-            self.handle_image_upload(request, post_instance=post_instance)
-
-        return super().dispatch(request, *args, **kwargs)
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
