@@ -463,6 +463,10 @@ input[type="password"] {
     justify-content: center;
 }
 
+button[aria-label='Close']{
+    margin-left: 15rem!important;
+}
+
 /*------------------ MEDIA QUERIES ------------------------ */
 
 @media (max-width: 992px) {

@@ -169,10 +169,16 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     slug_url_kwarg = 'post_slug'
     success_url = '/'
 
+    def delete(self, request, *args, **kwargs):
+        """
+        Override delete method to display success message after deletion.
+        """
+        messages.success(self.request, 'Post deleted successfully.')
+        return super().delete(request, *args, **kwargs)
+
     def get_object(self, queryset=None):
         category_slug = self.kwargs.get('category_slug')
         post_slug = self.kwargs.get('post_slug')
-        messages.success(self.request, 'Post deleted successfully.')
         return Post.objects.get(category__slug=category_slug, slug=post_slug)
 
 
