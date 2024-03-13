@@ -16,6 +16,7 @@ Revforum is an online forum made with Django framework. It allows people with th
     - [**User Stories:**](#user-stories)
     - [**Site Aims:**](#site-aims)
     - [**Forum Structure:**](#forum-structure)
+    - [**Forum Wireframes:**](#forum-wireframes)
     - [**Database Models:**](#database-models)
   - [**Current Features**](#current-features)
       - [*Main Screen:*](#main-screen)
@@ -74,6 +75,13 @@ Revforum is an online forum made with Django framework. It allows people with th
 ### **Forum Structure:**
 
 ![Forum Structure](static/images-docs/diagram_revforum.png)
+
+### **Forum Wireframes:**
+- The Wireframes were made with [Figma] (https://www.figma.com/).
+
+![Wireframe - Mainpage](static/images-docs/revforum-mainpage-wireframe.png)
+![Wireframe - Post List](static/images-docs/revforum-postdetail-wireframe.png)
+![Wireframe - Post Detail](static/images-docs/revforum-postlist-wireframe.png)
 
 ### **Database models:**
 - The models were created with DrawQSL.

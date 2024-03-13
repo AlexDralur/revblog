@@ -32,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-alexdralur-revblog-2bjum997qa.us2.codeanyapp.com',
                  'revforum.herokuapp.com', 'localhost', 'revforum-e95bec8bde7d.herokuapp.com',
-                 '8000-alexdralur-revblog-cx3q0lt4lcc.ws-eu108.gitpod.io']
+                 '8000-alexdralur-revblog-cx3q0lt4lcc.ws-eu108.gitpod.io', '8000-alexdralur-revblog-cx3q0lt4lcc.ws-eu109.gitpod.io']
 
 
 # Application definition
